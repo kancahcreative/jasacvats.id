@@ -131,6 +131,7 @@
   .nav-links{display:flex;align-items:center;gap:28px;}
   .nav-links a{font-size:15px;font-weight:700;color:var(--ink-soft);transition:color .2s;}
   .nav-links a:hover{color:var(--ink);}
+  .nav-links a.active{color:var(--blue-vivid);font-weight:800;}
   .nav-right{display:flex;align-items:center;gap:10px;}
   .btn{
     display:inline-flex;align-items:center;justify-content:center;gap:8px;
@@ -822,7 +823,7 @@
       <a href="#tentang-kami">Tentang Kami</a>
       <a href="#detail-paket">Detail Paket</a>
       <a href="#paket-harga">Harga</a>
-      <a href="#testimoni">Testimoni</a>
+      <a href="artikel.html">Artikel</a>
       <a href="#faq">FAQ</a>
       <a href="#" class="btn btn-primary btn-sm wa-cta nav-links-cta" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS.">Hubungi Kami</a>
     </div>
@@ -1478,7 +1479,7 @@
             <li><a href="#tentang-kami">Tentang Kami</a></li>
             <li><a href="#detail-paket">Detail Paket</a></li>
             <li><a href="#paket-harga">Paket Harga</a></li>
-            <li><a href="#testimoni">Testimoni</a></li>
+            <li><a href="artikel.html">Artikel</a></li>
             <li><a href="#faq">FAQ</a></li>
           </ul>
         </div>
@@ -1546,6 +1547,28 @@
     else openMobileNav();
   });
 
+  // ===== Scroll-spy lock (fixes "must click twice" bug) =====
+  // While a click-triggered smooth scroll is animating, the section
+  // that visually passes underneath the header fires the
+  // IntersectionObserver and overwrites the just-set active/bold link.
+  // We lock the spy right when the user clicks, and only release it
+  // once the browser reports the scroll has actually finished.
+  let scrollLock = false;
+  let scrollLockTimer = null;
+
+  function lockScrollSpy(){
+    scrollLock = true;
+    clearTimeout(scrollLockTimer);
+    // Prefer the native 'scrollend' event where supported.
+    window.addEventListener('scrollend', onScrollEnd, { once:true });
+    // Fallback timer in case 'scrollend' isn't supported by the browser.
+    scrollLockTimer = setTimeout(onScrollEnd, 1200);
+  }
+  function onScrollEnd(){
+    scrollLock = false;
+    clearTimeout(scrollLockTimer);
+  }
+
   // ===== Precise single-click smooth scroll =====
   // Two behaviors depending on whether the target section fits inside
   // the viewport below the sticky header:
@@ -1558,9 +1581,10 @@
   //    ends, so top-align the heading with a small, fixed gap under
   //    the header instead — maximizes how much of the section is
   //    visible right after scrolling.
-  function scrollToId(id){
+  function scrollToId(id, instant){
     const target = document.querySelector(id);
     if(!target) return;
+    const behavior = instant ? 'auto' : 'smooth';
 
     // Kalau target masih ber-class "reveal" dan belum pernah terlihat,
     // posisinya masih tergeser translateY(20px) sampai IntersectionObserver
@@ -1584,7 +1608,7 @@
     if (forceTopAlign.includes(id)) {
       const targetRect = target.getBoundingClientRect();
       const y = targetRect.top + window.pageYOffset - headerH - smallGap;
-      window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
+      window.scrollTo({ top: Math.max(y, 0), behavior: behavior });
       history.pushState(null, '', id);
       return;
     }
@@ -1611,7 +1635,7 @@
       y = targetRect.top + window.pageYOffset - headerH - smallGap;
     }
 
-    window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
+    window.scrollTo({ top: Math.max(y, 0), behavior: behavior });
     history.pushState(null, '', id);
   }
 
@@ -1623,9 +1647,57 @@
       if(!target) return;
       e.preventDefault();
       if(navLinks.classList.contains('open')) closeMobileNav();
+      lockScrollSpy();          // kunci scroll-spy dulu sebelum mulai scroll
       scrollToId(href);
+      setActiveNavLink(href);   // langsung bold link yang diklik, gak nunggu observer
     });
   });
+
+  // ===== Active nav link (bold highlight) =====
+  const navAnchorLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+  function setActiveNavLink(href){
+    navAnchorLinks.forEach(a=>{
+      a.classList.toggle('active', a.getAttribute('href') === href);
+    });
+  }
+  const navSectionIds = navAnchorLinks.map(a=>a.getAttribute('href')).filter(h=>document.querySelector(h));
+  if(navSectionIds.length){
+    const navSpy = new IntersectionObserver((entries)=>{
+      if(scrollLock) return; // abaikan update dari observer selama animasi scroll klik berlangsung
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          setActiveNavLink('#' + entry.target.id);
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    navSectionIds.forEach(id=>{
+      const el = document.querySelector(id);
+      if(el) navSpy.observe(el);
+    });
+  }
+
+  // ===== Handle cross-page navigation with a URL hash =====
+  // Kalau user datang dari halaman lain (misal artikel.html) lewat link
+  // "index.html#tentang-kami", browser cuma jalanin native anchor jump
+  // (yang gak selalu presisi krn header sticky) dan JS di sini gak pernah
+  // sempat nge-set status "aktif/bold" di navbar krn itu event klik yang
+  // beda halaman. Ini nunggu semuanya selesai load, lalu reposisikan
+  // scroll secara presisi (pakai fungsi yang sama kayak klik biasa) dan
+  // set status aktifnya secara manual.
+  function handleInitialHash(){
+    const hash = window.location.hash;
+    if(!hash || hash.length < 2) return;
+    const target = document.querySelector(hash);
+    if(!target) return;
+
+    // Tunggu 1 frame biar --header-h & layout sudah pasti final duluan.
+    requestAnimationFrame(()=>{
+      lockScrollSpy();
+      scrollToId(hash, true); // instant, biar gak keliatan lompat 2x
+      setActiveNavLink(hash);
+    });
+  }
+  window.addEventListener('load', handleInitialHash);
 
   // WA Float: hide on scroll down, show on scroll up
   const waFloat = document.getElementById('waFloat');

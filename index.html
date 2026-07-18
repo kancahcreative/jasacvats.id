@@ -683,6 +683,19 @@
 
 }
 
+  /* ===== MOBILE CAROUSEL (Paket Harga & Testimoni) ===== */
+  .carousel-nav{display:none;}
+  .carousel-btn{
+    width:42px;height:42px;border-radius:50%;
+    background:#fff;border:1.5px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:var(--shadow-sm);
+    transition:background .2s, border-color .2s, transform .15s;
+  }
+  .carousel-btn svg{width:18px;height:18px;color:var(--ink);}
+  .carousel-btn:active{transform:scale(.92);background:var(--sky-soft);}
+  .carousel-btn:disabled{opacity:.35;pointer-events:none;}
+
   /* ===== RESPONSIVE ===== */
   @media (max-width:980px){
     .hero{min-height:calc(100vh - 64px);min-height:calc(100dvh - 64px);padding:32px 0 40px;}
@@ -734,7 +747,47 @@
       margin-top:20px;
       letter-spacing:.01em;
     }
-    .price-grid{grid-template-columns:1fr;}
+
+    /* --- Paket Harga: horizontal swipe carousel --- */
+    .price-grid{
+      display:flex;
+      grid-template-columns:unset;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      gap:14px;
+      margin-bottom:18px;
+      padding:2px 2px 10px;
+      scrollbar-width:none;
+    }
+    .price-grid::-webkit-scrollbar{display:none;}
+    .price-grid .price-card{
+      scroll-snap-align:start;
+      flex:0 0 78%;
+      min-width:78%;
+    }
+    .price-carousel-nav{display:flex;justify-content:center;gap:14px;margin:4px 0 8px;}
+
+    /* --- Testimoni: horizontal swipe carousel --- */
+    .testi-grid{
+      display:flex;
+      grid-template-columns:unset;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      -webkit-overflow-scrolling:touch;
+      gap:14px;
+      padding:2px 2px 10px;
+      scrollbar-width:none;
+    }
+    .testi-grid::-webkit-scrollbar{display:none;}
+    .testi-grid .testi-shot-figure{
+      scroll-snap-align:start;
+      flex:0 0 82%;
+      min-width:82%;
+      margin:0;
+    }
+    .testi-carousel-nav{display:flex;justify-content:center;gap:14px;margin:4px 0 0;}
+
     .li-grid{grid-template-columns:1fr;}
     .process-grid{grid-template-columns:1fr;}
     .spotlight{padding:32px 24px;}
@@ -962,7 +1015,7 @@
         <p>Semua sudah termasuk file Word &amp; PDF, siap dipakai langsung untuk melamar kerja.</p>
       </div>
 
-      <div class="price-grid">
+      <div class="price-grid" id="priceGrid">
         <div class="price-card reveal">
           <div class="price-pkg">Paket 1</div>
           <h3>CV ATS 1 Bahasa</h3>
@@ -1059,6 +1112,15 @@
           </ul>
           <a href="#" class="btn btn-ghost wa-cta" data-msg="Halo, saya mau order Paket 4 - CV ATS + Surat Lamaran 2 Bahasa (Rp80.000).">Pilih Paket Ini</a>
         </div>
+      </div>
+
+      <div class="price-carousel-nav carousel-nav" id="priceCarouselNav">
+        <button class="carousel-btn" id="pricePrevBtn" aria-label="Sebelumnya">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="carousel-btn" id="priceNextBtn" aria-label="Berikutnya">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
       </div>
 
       <!-- SPOTLIGHT: PAKET READY TO WORK -->
@@ -1305,7 +1367,7 @@
         <h2 style="margin-top:14px;">Chat beneran dari customer</h2>
         <p>Yang udah order dan happy dengan hasilnya — semuanya nyata.</p>
       </div>
-      <div class="testi-grid">
+      <div class="testi-grid" id="testiGrid">
         <figure class="testi-shot-figure reveal">
           <img src="assets/testi-1.png" alt="Testimoni customer 1" loading="lazy">
         </figure>
@@ -1320,7 +1382,14 @@
         </figure>
       </div>
 
-     
+      <div class="testi-carousel-nav carousel-nav" id="testiCarouselNav">
+        <button class="carousel-btn" id="testiPrevBtn" aria-label="Sebelumnya">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="carousel-btn" id="testiNextBtn" aria-label="Berikutnya">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -1594,6 +1663,61 @@
       document.getElementById(tab.dataset.tab).classList.add('active');
     });
   });
+
+  // ===== MOBILE CAROUSEL: Paket Harga & Testimoni =====
+  // Horizontal swipe carousels with prev/next buttons, mobile only (<=640px).
+  // Desktop/tablet keep the original grid layout untouched.
+  function setupCarousel(gridEl, prevBtn, nextBtn, navEl){
+    if(!gridEl || !prevBtn || !nextBtn || !navEl) return;
+
+    function isMobile(){ return window.matchMedia('(max-width:640px)').matches; }
+
+    function firstItem(){ return gridEl.children[0]; }
+
+    function scrollStep(){
+      const item = firstItem();
+      if(!item) return 0;
+      const style = getComputedStyle(gridEl);
+      const gap = parseFloat(style.columnGap || style.gap || '0') || 0;
+      return item.getBoundingClientRect().width + gap;
+    }
+
+    function updateButtons(){
+      if(!isMobile()){
+        navEl.style.display = 'none';
+        return;
+      }
+      navEl.style.display = 'flex';
+      const maxScroll = gridEl.scrollWidth - gridEl.clientWidth - 2;
+      prevBtn.disabled = gridEl.scrollLeft <= 2;
+      nextBtn.disabled = gridEl.scrollLeft >= maxScroll;
+    }
+
+    prevBtn.addEventListener('click', ()=>{
+      gridEl.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
+    });
+    nextBtn.addEventListener('click', ()=>{
+      gridEl.scrollBy({ left: scrollStep(), behavior: 'smooth' });
+    });
+    gridEl.addEventListener('scroll', updateButtons, { passive:true });
+    window.addEventListener('resize', updateButtons);
+
+    updateButtons();
+  }
+
+  setupCarousel(
+    document.getElementById('priceGrid'),
+    document.getElementById('pricePrevBtn'),
+    document.getElementById('priceNextBtn'),
+    document.getElementById('priceCarouselNav')
+  );
+
+  setupCarousel(
+    document.getElementById('testiGrid'),
+    document.getElementById('testiPrevBtn'),
+    document.getElementById('testiNextBtn'),
+    document.getElementById('testiCarouselNav')
+  );
 </script>
 </body>
 </html>

@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<!--
+  SEBELUM PUBLISH — GANTI DATA DI BAWAH INI:
+  1. WA_NUMBER (di bagian <script>, paling bawah) -> nomor WhatsApp asli, format 62xxxxxxxxxx
+  2. Link Instagram di footer & nav (@jasacvatsid) -> pastikan itu akun aktif yang benar
+  3. Testimoni di section #testimoni -> ganti dengan testimoni ASLI dari klien
+  4. Kartu contoh LinkedIn di section #linkedin -> ganti dengan contoh profil ASLI (dengan izin klien terkait)
+  5. Logo brand di section #spesialis (Shopee, Unilever, dll) -> ganti dengan logo ASLI brand yang valid
+     (jangan pakai logo brand besar untuk klaim tanpa izin resmi)
+  6. Alamat & email di footer -> isi data asli
+  7. <link rel="canonical"> dan og:url -> isi dengan domain asli setelah live
+-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jasa CV ATS & Optimasi LinkedIn Profesional | Ready to Work — CVATS.id</title>
+<meta name="description" content="Jasa pembuatan CV ATS, surat lamaran, dan optimasi LinkedIn profesional. Bikin kamu Ready to Work — proses cepat 1x24 jam, format Word & PDF.">
+<meta name="keywords" content="jasa buat cv lamaran kerja, jasa cv ats, optimasi linkedin, cv ats profesional, jasa pembuatan cv">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://cvats.id/">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jasa CV ATS & Optimasi LinkedIn | CVATS.id">
+<meta property="og:description" content="CV, surat lamaran, sampai LinkedIn kamu — disiapin biar kamu bener-bener Ready to Work.">
+<meta property="og:url" content="https://cvats.id/">
+<meta property="og:locale" content="id_ID">
+
+<link rel="icon" type="image/png" href="assets/logos/favicon.png">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --navy-deep:#0A1A3D;
+    --navy:#152C5E;
+    --navy-mid:#1E3A8A;
+    --blue-vivid:#2E5BFF;
+    --blue-vivid-dark:#1E45E0;
+    --blue-light:#7AA2FF;
+    --blue-pale:#C9D7FF;
+    --sky-soft:#EEF3FF;
+    --bg:#F4F7FE;
+    --line:#E2E8F4;
+    --ink:#0A1A3D;
+    --ink-soft:#4B5675;
+    --ink-mute:#7A86A3;
+    --white:#FFFFFF;
+    --shadow-sm:0 6px 20px -8px rgba(10,26,61,.12);
+    --shadow-md:0 18px 40px -16px rgba(10,26,61,.18);
+    --shadow-lg:0 30px 60px -22px rgba(10,26,61,.28);
+    --radius-xl:28px;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:10px;
+    --maxw:1200px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:auto;}
+  body{
+    margin:0;
+    color:var(--ink);
+    font-family:'Satoshi',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-weight:500;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    background:var(--bg);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Clash Display',sans-serif;
+    margin:0;
+    color:var(--ink);
+    font-weight:600;
+    letter-spacing:-.01em;
+    line-height:1.1;
+  }
+  p{margin:0;}
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;margin:0;padding:0;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  :focus-visible{outline:2.5px solid var(--blue-vivid);outline-offset:3px;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;}
+  .section{padding:88px 0;}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:'Satoshi',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;
+    color:var(--navy);
+    background:var(--sky-soft);
+    padding:7px 14px;border-radius:100px;
+  }
+  .eyebrow svg{width:14px;height:14px;}
+
+  .section-head{max-width:680px;margin:0 0 48px;}
+  .section-head.center{margin-inline:auto;text-align:center;}
+  .section-head .lede{color:var(--ink-soft);font-size:17px;margin-top:16px;line-height:1.55;font-weight:500;}
+  .section-head h2{font-size:clamp(32px,4vw,46px);}
+
+  /* Reveal */
+  .js-enhanced .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease;}
+  .js-enhanced .reveal.in-view{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){ .js-enhanced .reveal{opacity:1;transform:none;transition:none;} }
+
+  /* Dot pattern decoration */
+  .dots{
+    position:absolute;pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,.15) 1.4px, transparent 1.4px);
+    background-size:14px 14px;
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(14px) saturate(1.4);
+    -webkit-backdrop-filter:blur(14px) saturate(1.4);
+    border-bottom:1px solid transparent;
+    transition:border-color .25s, box-shadow .25s;
+  }
+  header.scrolled{border-color:var(--line);box-shadow:0 4px 18px -10px rgba(10,26,61,.1);}
+  .nav{position:relative;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--maxw);margin:0 auto;gap:24px;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Clash Display',sans-serif;font-weight:700;font-size:20px;color:var(--ink);}
+  .logo img{height:42px;width:auto;display:block;}
+  .logo .dotid{color:var(--blue-vivid);}
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a{font-size:15px;font-weight:700;color:var(--ink-soft);transition:color .2s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-right{display:flex;align-items:center;gap:10px;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-weight:700;font-size:15px;border-radius:100px;border:none;
+    padding:13px 24px;transition:transform .18s, box-shadow .18s, background .18s, color .18s, border-color .18s;
+    white-space:nowrap;font-family:'Satoshi',sans-serif;cursor:pointer;
+  }
+  .btn-primary{background:var(--blue-vivid);color:#fff;box-shadow:0 8px 20px -8px rgba(46,91,255,.55);}
+  .btn-primary:hover{background:var(--blue-vivid-dark);transform:translateY(-1px);}
+  .btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--navy);background:var(--sky-soft);}
+  .btn-outline-light{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.3);}
+  .btn-outline-light:hover{border-color:#fff;background:rgba(255,255,255,.06);}
+  .btn-sm{padding:10px 18px;font-size:14px;}
+  .nav-toggle{display:none;background:none;padding:6px;}
+  .nav-toggle svg{width:22px;height:22px;color:var(--ink);}
+  .nav-links-cta{display:none;}
+  .nav-links a.nav-links-cta{color:#fff;}
+
+  /* ===== HERO (simplified, fits 1 viewport) ===== */
+  .hero{
+    background:linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+    padding:32px 0 40px;
+    min-height:calc(100vh - 70px);
+    min-height:calc(100dvh - 70px);
+    display:flex;align-items:center;
+    position:relative;overflow:hidden;isolation:isolate;
+    color:#fff;
+  }
+  .hero::before,.hero::after{
+    content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(90px);z-index:0;
+  }
+  .hero::before{top:-180px;right:-160px;width:560px;height:560px;background:rgba(122,162,255,.4);}
+  .hero::after{bottom:-200px;left:-140px;width:520px;height:520px;background:rgba(255,255,255,.12);}
+  .hero-glow{
+    position:absolute;inset:0;pointer-events:none;z-index:0;
+    background:radial-gradient(680px 520px at 72% 42%, rgba(122,162,255,.28), transparent 68%),
+               radial-gradient(520px 420px at 14% 82%, rgba(255,255,255,.07), transparent 70%);
+  }
+  .hero-dots-wide{
+    position:absolute;inset:0;pointer-events:none;z-index:0;
+    background-image:radial-gradient(rgba(255,255,255,.09) 1.4px, transparent 1.4px);
+    background-size:26px 26px;
+    -webkit-mask-image:linear-gradient(115deg, transparent 8%, rgba(0,0,0,.7) 38%, rgba(0,0,0,.7) 70%, transparent 96%);
+    mask-image:linear-gradient(115deg, transparent 8%, rgba(0,0,0,.7) 38%, rgba(0,0,0,.7) 70%, transparent 96%);
+  }
+  .hero-shard{
+    position:absolute;pointer-events:none;z-index:0;
+    background:linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,0) 70%);
+    clip-path:polygon(50% 0%, 100% 35%, 84% 100%, 8% 88%);
+  }
+  .hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative;z-index:1;width:100%;}
+  .hero-eyebrow{
+    display:inline-block;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.14);
+    color:#fff;
+    padding:8px 18px;
+    border-radius:100px;
+    font-family:'Clash Display',sans-serif;
+    font-weight:600;
+    font-size:14px;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    color:#fff;
+    font-size:clamp(28px,3.8vw,46px);
+    line-height:1.08;
+    margin-bottom:14px;
+    max-width:600px;
+  }
+  .hero h1 .hl{
+    background:linear-gradient(180deg,transparent 65%, rgba(122,162,255,.5) 65%);
+    padding:0 6px;
+  }
+  .hero p.lede{
+    color:#C8D3EE;
+    font-size:15.5px;
+    line-height:1.55;
+    max-width:500px;
+    font-weight:500;
+  }
+  .hero p.lede strong{color:#fff;font-weight:700;}
+  .hero-cta{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
+  .hero .btn{padding:11px 20px;font-size:14.5px;}
+
+  /* Mobile-only "hired by" strip — hidden on desktop, replaces the photo below 980px */
+  .hero-mobile-trust{display:none;}
+  .hmt-label{display:block;font-size:12px;font-weight:700;color:#9FB0DC;letter-spacing:.03em;text-transform:uppercase;margin-bottom:10px;}
+  .hmt-logos{display:flex;flex-wrap:wrap;gap:8px;}
+  .hmt-logos span{
+    background:rgba(255,255,255,.94);
+    border-radius:100px;padding:7px 14px;
+    display:inline-flex;align-items:center;
+    font-family:'Clash Display',sans-serif;font-weight:700;font-size:12.5px;
+  }
+  .hmt-logos .brand-pill img{height:16px;width:auto;display:block;}
+  .hmt-logos .hmt-more{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.24);color:#fff;}
+
+  /* Hero image + floating stat */
+  .hero-visual{position:relative;width:100%;}
+  .hero-image-wrap{
+    position:relative;
+    border-radius:42% 58% 56% 44% / 46% 40% 60% 54%;
+    overflow:visible;
+    aspect-ratio:1/1;
+    max-width:380px;
+    margin-left:auto;
+  }
+  .hero-image-wrap::before{
+    content:"";position:absolute;inset:-22px;
+    border-radius:inherit;
+    background:linear-gradient(140deg, var(--blue-vivid), var(--blue-light));
+    opacity:.4;filter:blur(24px);z-index:-1;
+  }
+  .hero-image{
+    width:100%;height:100%;
+    border-radius:inherit;
+    object-fit:cover;
+    border:none;
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.55);
+  }
+  .hero-float-stat{
+    position:absolute;left:-18px;top:18px;
+    background:#fff;color:var(--ink);
+    border-radius:12px;
+    padding:10px 14px;
+    display:flex;align-items:center;gap:10px;
+    box-shadow:0 12px 28px -10px rgba(0,0,0,.35);
+    z-index:2;
+  }
+  .hero-float-stat .ic{
+    width:30px;height:30px;border-radius:8px;
+    background:var(--sky-soft);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .hero-float-stat .ic svg{width:15px;height:15px;color:var(--blue-vivid);}
+  .hero-float-stat strong{font-family:'Clash Display',sans-serif;font-size:16px;font-weight:600;display:block;line-height:1;}
+  .hero-float-stat span{font-size:10.5px;color:var(--ink-soft);font-weight:600;letter-spacing:.01em;}
+
+  /* ===== TRUST BAR ===== */
+  .trust-bar{padding:36px 0;}
+  .trust-bar .wrap{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:20px;
+    padding:22px 26px;
+  }
+  .trust-item{display:flex;align-items:center;gap:12px;font-size:14.5px;color:var(--ink-soft);font-weight:500;}
+  .trust-item strong{color:var(--ink);font-family:'Clash Display',sans-serif;font-size:17px;font-weight:600;display:block;}
+  .trust-item .ic{
+    width:38px;height:38px;border-radius:10px;
+    background:var(--sky-soft);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .trust-item .ic svg{width:18px;height:18px;color:var(--blue-vivid);}
+
+  /* ===== TENTANG KAMI (ABOUT) ===== */
+  .about-panel{
+    position:relative;overflow:hidden;isolation:isolate;
+    background:linear-gradient(155deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+    border-radius:var(--radius-xl);
+    padding:56px 52px;
+    box-shadow:var(--shadow-lg);
+    scroll-margin-top:calc(var(--header-h, 74px) + 24px);
+  }
+  .about-panel::before,.about-panel::after{
+    content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(80px);z-index:0;
+  }
+  .about-panel::before{top:-160px;right:-120px;width:380px;height:380px;background:rgba(122,162,255,.35);}
+  .about-panel::after{bottom:-140px;left:-100px;width:340px;height:340px;background:rgba(255,255,255,.08);}
+  .about-panel-shard{
+    position:absolute;pointer-events:none;z-index:0;
+    background:linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,0) 70%);
+    clip-path:polygon(50% 0%, 100% 35%, 84% 100%, 8% 88%);
+  }
+  .about-panel-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:center;position:relative;z-index:1;}
+  .about-panel-copy .eyebrow-light{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:'Satoshi',sans-serif;font-weight:700;font-size:13px;
+    color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+    padding:7px 14px;border-radius:100px;
+  }
+  .about-panel-copy h2{color:#fff;font-size:clamp(30px,3.6vw,42px);margin-top:14px;}
+  .about-panel-copy p{color:#C8D3EE;font-size:16.5px;line-height:1.75;margin-top:16px;}
+  .about-panel-copy p strong{color:#fff;}
+  .about-panel-copy .hl-pill{
+    display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;
+    padding:2px 10px;border-radius:100px;font-weight:700;font-size:14px;font-family:'Clash Display',sans-serif;margin:0 1px;
+  }
+  .about-stats{display:flex;flex-direction:column;gap:14px;position:relative;z-index:1;}
+  .about-stat{
+    display:flex;align-items:center;gap:16px;
+    background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+    border-radius:var(--radius-lg);padding:18px 20px;
+    transition:transform .2s ease,background .2s ease;
+  }
+  .about-stat:hover{transform:translateX(4px);background:rgba(255,255,255,.1);}
+  .about-stat .ic{
+    width:46px;height:46px;border-radius:12px;flex-shrink:0;
+    background:linear-gradient(140deg,var(--blue-vivid),var(--blue-light));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 20px -8px rgba(46,91,255,.6);
+  }
+  .about-stat .ic svg{width:22px;height:22px;color:#fff;}
+  .about-stat strong{font-family:'Clash Display',sans-serif;font-size:26px;font-weight:700;color:#fff;display:block;line-height:1.1;}
+  .about-stat span{font-size:13px;color:#B9C6E8;font-weight:600;}
+
+  /* ===== SPESIALIS ===== */
+  .spes-section{
+    position:relative;overflow:hidden;isolation:isolate;
+    padding:100px 0 108px;
+    background:linear-gradient(160deg, var(--navy-deep) 0%, var(--navy-mid) 48%, var(--blue-vivid) 130%);
+  }
+  .spes-section::before,.spes-section::after{
+    content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(70px);z-index:0;
+  }
+  .spes-section::before{top:-140px;left:-110px;width:360px;height:360px;background:rgba(255,255,255,.14);}
+  .spes-section::after{bottom:-160px;right:-120px;width:420px;height:420px;background:rgba(122,162,255,.4);}
+  .spes-shard{
+    position:absolute;pointer-events:none;z-index:0;
+    background:linear-gradient(135deg, rgba(255,255,255,.18), rgba(255,255,255,0) 70%);
+    clip-path:polygon(50% 0%, 100% 35%, 84% 100%, 8% 88%);
+  }
+  .spes-head{text-align:center;margin-bottom:56px;position:relative;z-index:1;}
+  .spes-kicker{
+    display:block;font-family:'Clash Display',sans-serif;font-weight:600;
+    font-size:clamp(30px,4.6vw,44px);color:#fff;letter-spacing:-.01em;margin-bottom:12px;
+  }
+  .spes-pill{
+    display:inline-block;font-family:'Clash Display',sans-serif;font-weight:700;
+    font-size:clamp(24px,3.6vw,36px);color:#fff;letter-spacing:-.01em;
+    background:linear-gradient(135deg,var(--navy) 0%, var(--navy-deep) 100%);
+    border:1px solid rgba(255,255,255,.18);
+    padding:10px 32px;border-radius:100px;
+    box-shadow:0 18px 34px -14px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1);
+  }
+  .spes-head p{color:#C8D3EE;font-size:17px;margin-top:20px;max-width:480px;margin-inline:auto;}
+  .spes-head .hl-pill{
+    display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;
+    padding:3px 12px;border-radius:100px;font-weight:700;font-size:14px;font-family:'Clash Display',sans-serif;
+  }
+  .logo-float-grid{
+    display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
+    gap:22px 26px;position:relative;z-index:1;max-width:900px;margin:0 auto;
+  }
+  .logo-chip{
+    background:rgba(255,255,255,.96);
+    border-radius:20px;
+    padding:20px 26px;
+    min-width:148px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+    box-shadow:0 22px 40px -18px rgba(4,10,30,.55);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .logo-chip:nth-child(4n+1){transform:rotate(-1.6deg);}
+  .logo-chip:nth-child(4n+2){transform:rotate(1.2deg);}
+  .logo-chip:nth-child(4n+3){transform:rotate(-.7deg);}
+  .logo-chip:nth-child(4n+4){transform:rotate(1.5deg);}
+  .logo-chip:hover{transform:translateY(-7px) rotate(0deg) !important;box-shadow:0 28px 52px -16px rgba(4,10,30,.6);}
+  .logo-chip img{width:112px;height:34px;object-fit:contain;display:block;}
+  .logo-chip small{display:block;font-weight:600;font-size:9.5px;color:var(--ink-mute);letter-spacing:.09em;text-transform:uppercase;font-family:'Satoshi',sans-serif;text-align:center;}
+
+  /* ===== KENAPA ATS ===== */
+  .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .why-card{
+    background:#fff;
+    border-radius:var(--radius-xl);
+    padding:34px 32px;
+    border:1px solid var(--line);
+    box-shadow:var(--shadow-sm);
+  }
+  .why-card.bad{border-color:#F8D7CE;}
+  .why-card.good{border-color:#C9D7FF;box-shadow:0 18px 40px -16px rgba(46,91,255,.18);}
+  .why-tag{display:inline-flex;font-weight:700;font-size:12px;padding:6px 12px;border-radius:100px;margin-bottom:16px;letter-spacing:.02em;font-family:'Clash Display',sans-serif;}
+  .why-card.bad .why-tag{background:#FCEFEA;color:#D9694E;}
+  .why-card.good .why-tag{background:var(--sky-soft);color:var(--navy);}
+  .why-card h3{font-size:22px;margin-bottom:18px;display:flex;align-items:center;gap:10px;font-weight:600;}
+  .why-card ul{display:flex;flex-direction:column;gap:14px;}
+  .why-card li{display:flex;gap:10px;font-size:14.5px;color:var(--ink-soft);align-items:flex-start;line-height:1.55;}
+  .why-card li svg{width:18px;height:18px;flex-shrink:0;margin-top:2px;}
+  .why-card.bad li svg{color:#D9694E;}
+  .why-card.good li svg{color:var(--blue-vivid);}
+
+  /* ===== Document icons (Word & PDF) ===== */
+  .ic-doc{width:32px;height:40px;flex-shrink:0;display:inline-block;vertical-align:middle;}
+  .ic-doc.word{color:#2B57D5;}
+  .ic-doc.pdf{color:#D94444;}
+  .ic-doc.lg{width:48px;height:60px;}
+  .ic-doc.sm{width:26px;height:32px;}
+
+  /* ===== PRICING ===== */
+  #paket-harga{background:linear-gradient(180deg, transparent, var(--sky-soft) 30%, var(--sky-soft) 70%, transparent);scroll-margin-top:calc(var(--header-h, 74px) + 24px);}
+  .pricing-head{text-align:center;margin-bottom:54px;}
+  .pricing-head h2{font-size:clamp(36px,4.8vw,54px);}
+  .pricing-head p{color:var(--ink-soft);font-size:17px;margin-top:14px;max-width:520px;margin-inline:auto;}
+  .price-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:36px;}
+  .price-card{
+    background:#fff;
+    border-radius:var(--radius-xl);
+    border:1px solid var(--line);
+    padding:28px 24px;
+    display:flex;flex-direction:column;position:relative;
+    transition:transform .2s, box-shadow .2s, border-color .2s;
+  }
+  .price-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+  .price-card.featured{border-color:var(--blue-vivid);box-shadow:0 18px 40px -16px rgba(46,91,255,.32);}
+  .price-ribbon{position:absolute;top:-11px;right:18px;font-size:11px;font-weight:700;padding:5px 12px;border-radius:100px;background:var(--navy-deep);color:#fff;letter-spacing:.02em;font-family:'Clash Display',sans-serif;z-index:1;box-shadow:0 6px 14px -6px rgba(10,26,61,.4);}
+  .price-ribbon.accent{background:var(--blue-vivid);}
+  .price-ribbon.pink{background:linear-gradient(135deg,#FF5FA8,#E23FA0);}
+  .price-ribbon.yellow{background:linear-gradient(135deg,#FFC93C,#FFA800);color:#4A2E00;}
+  .price-ribbon.green{background:linear-gradient(135deg,#8BE23F,#4FBF2E);}
+  .price-pkg{font-size:11.5px;font-weight:700;color:var(--ink-mute);letter-spacing:.06em;text-transform:uppercase;font-family:'Satoshi',sans-serif;}
+  .price-card h3{font-size:18px;margin:8px 0 12px;line-height:1.3;min-height:50px;font-weight:600;}
+  .price-amount{font-family:'Clash Display',sans-serif;font-size:32px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+  .price-formats{display:flex;gap:8px;margin:14px 0 18px;align-items:center;}
+  .fmt-row{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--ink-soft);font-family:'Satoshi',sans-serif;}
+  .price-feats{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;flex-grow:1;}
+  .price-feats li{display:flex;gap:8px;font-size:13.5px;color:var(--ink-soft);align-items:flex-start;line-height:1.5;}
+  .price-feats li svg{width:15px;height:15px;color:var(--blue-vivid);flex-shrink:0;margin-top:3px;}
+
+  /* Spotlight */
+  .spotlight{
+    background:linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 100%);
+    border-radius:var(--radius-xl);
+    padding:48px 44px;
+    position:relative;overflow:hidden;
+    color:#fff;
+  }
+  .spotlight-deco-tri{position:absolute;top:0;right:0;width:140px;height:140px;background:rgba(255,255,255,.05);clip-path:polygon(100% 0,100% 100%, 0 0);opacity:.7;}
+  .spotlight-grid{display:grid;grid-template-columns:1fr 1.05fr;gap:48px;align-items:center;position:relative;z-index:1;}
+  .spotlight h3{color:#fff;font-size:clamp(30px,3.8vw,44px);margin:14px 0 10px;line-height:1.1;}
+  .spotlight .sub{color:#C8D3EE;font-size:15.5px;margin-bottom:24px;max-width:380px;line-height:1.55;}
+  .spotlight .price-amount{color:#fff;font-size:42px;margin-bottom:24px;}
+  .spotlight-feats{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:var(--radius-lg);
+    padding:24px;
+  }
+  .spotlight-feats h4{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#7AA2FF;margin-bottom:14px;font-family:'Satoshi',sans-serif;display:flex;align-items:center;gap:8px;}
+  .spotlight-feats ul{display:flex;flex-direction:column;gap:11px;}
+  .spotlight-feats li{display:flex;gap:9px;font-size:13.5px;color:#E4EAF7;align-items:center;}
+  .spotlight-li-row{
+    grid-column:1/-1;display:flex;align-items:center;gap:10px;
+    border-top:1px solid rgba(255,255,255,.12);margin-top:6px;padding-top:18px;
+  }
+  .spotlight-li-row .li-pill{
+    display:inline-flex;align-items:center;gap:7px;
+    background:rgba(10,102,194,.22);border:1px solid rgba(122,162,255,.4);color:#DCE8FF;
+    padding:8px 14px;border-radius:100px;font-size:13px;font-weight:700;
+  }
+  .big-fmt{display:flex;align-items:center;gap:12px;margin:6px 0 18px;}
+
+  /* ===== LINKEDIN SHOWCASE ===== */
+  .li-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .li-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    box-shadow:var(--shadow-sm);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .li-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);}
+  .li-cover{height:64px;background:linear-gradient(120deg,var(--blue-light),var(--navy-mid));position:relative;}
+  .li-optim{position:absolute;top:12px;right:12px;background:#fff;color:var(--navy);font-size:11px;font-weight:700;padding:4px 10px;border-radius:100px;display:flex;align-items:center;gap:5px;box-shadow:0 4px 10px -4px rgba(0,0,0,.15);font-family:'Satoshi',sans-serif;}
+  .li-optim svg{width:10px;height:10px;color:var(--blue-vivid);}
+  .li-body{padding:0 22px 22px;}
+  .li-avatar{
+    width:64px;height:64px;border-radius:50%;
+    border:3px solid #fff;margin-top:-32px;
+    background-size:cover;background-position:center;
+    box-shadow:0 6px 14px -4px rgba(10,26,61,.3);
+    position:relative;
+  }
+  .li-name{font-family:'Clash Display',sans-serif;font-weight:600;font-size:16px;margin-top:14px;}
+  .li-role{font-size:13px;color:var(--ink-soft);margin-top:4px;line-height:1.4;}
+  .li-about{font-size:13px;color:var(--ink-soft);margin-top:14px;line-height:1.6;padding-top:14px;border-top:1px solid var(--line);font-style:italic;}
+
+  /* ===== PROCESS ===== */
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .process-item{
+    position:relative;padding:26px 22px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius-lg);
+    transition:transform .2s, box-shadow .2s;
+  }
+  .process-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);}
+  .process-num{font-family:'Clash Display',sans-serif;font-size:38px;font-weight:700;color:var(--blue-vivid);line-height:1;}
+  .process-item h3{font-size:18px;margin:14px 0 8px;font-weight:600;display:flex;align-items:center;gap:8px;}
+  .process-item h3 svg{width:18px;height:18px;color:var(--blue-vivid);}
+  .process-item p{font-size:14px;color:var(--ink-soft);line-height:1.55;}
+
+  /* ===== DETAIL PAKET (real mockups from PDF) ===== */
+.detail-paket-section{background:#fff;}
+
+  .detail-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:36px;position:relative;z-index:1;}
+  .detail-tab{
+    background:#fff;border:1.5px solid var(--line);color:var(--ink-soft);
+    font-weight:700;font-size:14px;padding:10px 20px;border-radius:100px;
+    transition:all .2s;font-family:'Satoshi',sans-serif;
+  }
+  .detail-tab:hover{border-color:var(--navy);color:var(--ink);}
+  .detail-tab.active{background:var(--blue-vivid);border-color:var(--blue-vivid);color:#fff;box-shadow:0 10px 24px -10px rgba(46,91,255,.5);}
+  .detail-panels{position:relative;}
+  .detail-panel{display:none;}
+  .detail-panel.active{display:block;}
+  .detail-figure{
+    max-width:640px;margin:0 auto;
+    border-radius:var(--radius-lg);overflow:hidden;
+    border:1px solid var(--line);
+    box-shadow:var(--shadow-md);
+  }
+  .detail-figure img{width:100%;height:auto;display:block;}
+  .detail-caption{text-align:center;color:var(--ink-mute);font-size:13px;margin-top:16px;}
+
+  /* ===== TESTIMONI ===== */
+  #testimoni{background:linear-gradient(180deg, var(--bg), #fff 50%, var(--bg));scroll-margin-top:calc(var(--header-h, 74px) + 24px);}
+  .testi-head{text-align:center;margin-bottom:48px;}
+  .testi-head h2{font-size:clamp(36px,5vw,52px);}
+  .testi-head p{color:var(--ink-soft);font-size:17px;margin-top:14px;max-width:520px;margin-inline:auto;}
+  .testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;padding-bottom:24px;}
+
+  /* Real testimoni screenshots (from PDF, embedded as-is) */
+  .testi-shots{max-width:900px;margin:56px auto 0;}
+  .testi-shots-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
+  .testi-shot-figure{
+    border-radius:var(--radius-lg);overflow:hidden;
+    border:1px solid var(--line);box-shadow:var(--shadow-md);
+    background:#0B141A;
+  }
+  .testi-shot-figure img{width:100%;height:auto;display:block;}
+
+  /* ===== FAQ ===== */
+  .faq-list{display:flex;flex-direction:column;gap:12px;max-width:780px;margin:0 auto;}
+  details.faq{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius-md);
+    padding:18px 22px;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  details.faq[open]{border-color:var(--blue-vivid);box-shadow:var(--shadow-sm);}
+  details.faq summary{
+    list-style:none;cursor:pointer;
+    font-family:'Clash Display',sans-serif;font-weight:600;font-size:17px;
+    color:var(--ink);
+    display:flex;justify-content:space-between;align-items:center;gap:18px;
+  }
+  details.faq summary::-webkit-details-marker{display:none;}
+  details.faq summary::after{
+    content:"";flex-shrink:0;width:28px;height:28px;border-radius:50%;
+    background:var(--sky-soft);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232E5BFF' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-size:14px;background-repeat:no-repeat;background-position:center;
+    transition:transform .25s;
+  }
+  details.faq[open] summary::after{transform:rotate(180deg);}
+  details.faq p{color:var(--ink-soft);font-size:15px;margin-top:12px;line-height:1.6;}
+
+  /* ===== FINAL CTA ===== */
+  .final-cta{
+    background:linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 100%);
+    color:#fff;
+    padding:56px 0;
+    position:relative;overflow:hidden;
+    border-radius:32px;margin:0 24px;
+  }
+  .final-cta-inner{
+    display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;
+    position:relative;z-index:1;
+  }
+  .final-cta h2{font-size:clamp(28px,3.6vw,40px);color:#fff;margin:14px 0 12px;line-height:1.12;max-width:520px;}
+  .final-cta p{color:#C8D3EE;font-size:16px;max-width:480px;line-height:1.55;}
+  .final-cta .btn-primary{margin-top:22px;padding:15px 28px;font-size:15px;}
+  .final-cta .badge{
+    display:inline-flex;align-items:center;gap:6px;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);
+    padding:7px 14px;border-radius:100px;
+    font-weight:700;font-size:13px;
+  }
+  .final-cta .badge svg{width:12px;height:12px;}
+  .final-cta-image{
+    border-radius:24px;overflow:hidden;
+    aspect-ratio:16/11;
+    border:3px solid rgba(255,255,255,.1);
+    box-shadow:0 30px 60px -20px rgba(0,0,0,.5);
+  }
+  .final-cta-image img{width:100%;height:100%;object-fit:cover;}
+
+  /* ===== FOOTER ===== */
+  footer{padding:64px 0 32px;}
+  .foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:36px;}
+  .foot-brand p{color:var(--ink-soft);font-size:14.5px;margin-top:12px;max-width:300px;line-height:1.55;}
+  .foot-cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .foot-col h4{font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin-bottom:14px;font-family:'Satoshi',sans-serif;}
+  .foot-col ul{display:flex;flex-direction:column;gap:10px;}
+  .foot-col a{font-size:14.5px;color:var(--ink-soft);transition:color .2s;}
+  .foot-col a:hover{color:var(--ink);}
+  .foot-social{display:flex;gap:10px;margin-top:18px;}
+  .foot-social a{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;}
+  .foot-social a:hover{border-color:var(--navy);background:var(--sky-soft);}
+  .foot-social svg{width:16px;height:16px;}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--ink-mute);}
+
+  /* ===== WA FLOAT (smaller + hide on scroll) ===== */
+  .wa-float{
+    position:fixed;bottom:20px;right:20px;z-index:60;
+    width:54px;height:54px;border-radius:50%;
+    background:var(--blue-vivid);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 24px -6px rgba(46,91,255,.5);
+    transition:transform .3s ease, opacity .3s ease;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+  .wa-float.hide{transform:translateY(80px);opacity:0;pointer-events:none;}
+  .wa-float svg{width:25px;height:25px;color:#fff;}
+
+  /* ===== NAVBAR DESKTOP ===== */
+@media (min-width:981px){
+
+  .nav{
+    display:flex;
+    align-items:center;
+    gap:0;
+  }
+
+  /* Logo tetap kiri */
+  .logo{
+    margin-right:auto;
+    flex-shrink:0;
+  }
+
+  /* Menu mepet kanan */
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:40px;
+    margin-left:0;
+  }
+
+  /* Tombol Hubungi Kami paling kanan */
+  .nav-right{
+    display:flex;
+    align-items:center;
+    margin-left:32px;
+  }
+
+}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:980px){
+    .hero{min-height:calc(100vh - 64px);min-height:calc(100dvh - 64px);padding:32px 0 40px;}
+    .hero-grid{grid-template-columns:1fr;gap:28px;}
+    .hero-visual{display:none;}
+    .hero-mobile-trust{display:block;margin-top:28px;padding-top:22px;border-top:1px solid rgba(255,255,255,.14);}
+    .why-grid{grid-template-columns:1fr;}
+    .price-grid{grid-template-columns:1fr 1fr;}
+    .spotlight-grid{grid-template-columns:1fr;}
+    .li-grid{grid-template-columns:1fr 1fr;}
+    .process-grid{grid-template-columns:1fr 1fr;row-gap:16px;}
+    .testi-grid{grid-template-columns:1fr;}
+    .testi-shots-grid{grid-template-columns:1fr;}
+    .spes-section{padding:76px 0 84px;}
+    .about-panel{padding:44px 36px;}
+    .about-panel-grid{grid-template-columns:1fr;gap:32px;}
+    .about-stats{flex-direction:row;}
+    .about-stat{flex:1;flex-direction:column;text-align:center;gap:10px;}
+    .logo-chip{padding:16px 22px;min-width:126px;}
+    .logo-chip img{width:96px;height:30px;}
+    .trust-bar .wrap{grid-template-columns:1fr 1fr;gap:18px;}
+    .nav-links{display:none;}
+    .final-cta-inner{grid-template-columns:1fr;gap:32px;}
+    .final-cta-image{max-width:420px;width:100%;margin:0 auto;}
+  }
+  @media (max-width:640px){
+    .section{padding:64px 0;}
+    .hero{padding:24px 0 32px;min-height:calc(100vh - 58px);min-height:calc(100dvh - 58px);}
+    .hero-eyebrow{font-size:12px;padding:6px 14px;margin-bottom:14px;}
+    .hero h1{font-size:26px;line-height:1.1;margin-bottom:12px;}
+    .hero p.lede{font-size:14.5px;}
+    .hero-cta{margin-top:18px;}
+    .hero .btn{padding:10px 18px;font-size:13.5px;}
+    .hero-float-stat{left:-10px;top:10px;padding:8px 12px;gap:8px;}
+    .hero-float-stat .ic{width:26px;height:26px;}
+    .hero-float-stat .ic svg{width:13px;height:13px;}
+    .hero-float-stat strong{font-size:14px;}
+    .hero-float-stat span{font-size:9.5px;}
+    .nav-links{display:none;}
+    .nav-toggle{display:block;}
+    .nav-right .btn-ghost{display:none;}
+    .nav-right .btn-primary{display:none;}
+    .nav-links-cta{
+      display:flex;
+      width:100%;
+      justify-content:center;
+      font-size:16px;
+      padding:16px 24px;
+      margin-top:20px;
+      letter-spacing:.01em;
+    }
+    .price-grid{grid-template-columns:1fr;}
+    .li-grid{grid-template-columns:1fr;}
+    .process-grid{grid-template-columns:1fr;}
+    .spotlight{padding:32px 24px;}
+    .spotlight-feats{grid-template-columns:1fr;}
+    .spes-section{padding:64px 0 72px;}
+    .about-panel{padding:32px 22px;border-radius:22px;}
+    .about-stats{flex-direction:column;}
+    .about-stat{flex-direction:row;text-align:left;}
+    .spes-pill{padding:8px 22px;}
+    .logo-float-grid{gap:14px 16px;}
+    .logo-chip{padding:14px 18px;min-width:104px;border-radius:16px;}
+    .logo-chip img{width:84px;height:26px;}
+    .logo-chip small{font-size:8.5px;}
+    .spes-shard{display:none;}
+    .trust-bar .wrap{grid-template-columns:1fr;gap:14px;}
+    .foot-top{flex-direction:column;}
+    .foot-cols{gap:32px;}
+    .final-cta{margin:0 12px;border-radius:24px;padding:44px 0;}
+    .nav{padding:12px 18px;}
+    .detail-figure{max-width:100%;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="nav">
+    <a href="#beranda" class="logo">
+      <img src="assets/logos/jasacvats.png" alt="CVATS.id">
+    </a>
+    <div class="nav-links">
+      <a href="#tentang-kami">Tentang Kami</a>
+      <a href="#detail-paket">Detail Paket</a>
+      <a href="#paket-harga">Harga</a>
+      <a href="#testimoni">Testimoni</a>
+      <a href="#faq">FAQ</a>
+      <a href="#" class="btn btn-primary btn-sm wa-cta nav-links-cta" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS.">Hubungi Kami</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="btn btn-primary btn-sm wa-cta" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS.">Hubungi Kami</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO (simplified) -->
+  <section class="hero" id="beranda">
+    <div class="hero-glow"></div>
+    <div class="hero-dots-wide"></div>
+    <div class="hero-shard" style="top:-30px;left:6%;width:200px;height:200px;transform:rotate(-14deg);opacity:.5;"></div>
+    <div class="hero-shard" style="bottom:-50px;right:14%;width:260px;height:260px;transform:rotate(20deg);opacity:.4;"></div>
+    <div class="dots" style="top:80px;right:8%;width:100px;height:70px;"></div>
+    <div class="wrap">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <span class="hero-eyebrow">Jasa CV ATS Profesional</span>
+          <h1>Bikin CV-mu <span class="hl">Siap Dilirik HRD</span> — dalam 1x24 Jam.</h1>
+          <p class="lede">CV ATS profesional, surat lamaran, sampai optimasi LinkedIn. Udah dipercaya meloloskan customer ke <strong>50+ perusahaan besar</strong>. Proses cepat, format Word &amp; PDF, harga mulai Rp 30.000.</p>
+          <div class="hero-cta">
+            <a href="#" class="btn btn-primary wa-cta" data-msg="Halo, saya mau order jasa pembuatan CV ATS.">Pesan Sekarang</a>
+            <a href="#paket-harga" class="btn btn-outline-light">Lihat Layanan</a>
+          </div>
+          <div class="hero-mobile-trust">
+            <span class="hmt-label">Kandidat kami diterima kerja di</span>
+            <div class="hmt-logos">
+              <span class="brand-pill"><img src="assets/logos/shopee.png" alt="Shopee"></span>
+              <span class="brand-pill"><img src="assets/logos/unilever.png" alt="Unilever"></span>
+              <span class="brand-pill"><img src="assets/logos/pertamina.png" alt="Pertamina"></span>
+              <span class="brand-pill"><img src="assets/logos/astra.png" alt="Astra"></span>
+              <span class="hmt-more">+46 lainnya</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-wrap">
+            <img class="hero-image" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&h=500&q=80&auto=format&fit=crop" alt="Profesional siap kerja" loading="eager">
+            <div class="hero-float-stat">
+              <span class="ic">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+              <div>
+                <strong>50+</strong>
+                <span>Perusahaan Besar</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST BAR -->
+  <section class="trust-bar">
+    <div class="wrap">
+      <div class="trust-item">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.8 6.6L22 9.3l-5 4.9 1.2 7.1L12 17.9l-6.2 3.4L7 14.2 2 9.3l7.2-.7L12 2z" stroke-linejoin="round"/></svg></span>
+        <span><strong>4.9/5</strong>rating klien</span>
+      </div>
+      <div class="trust-item">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round"/></svg></span>
+        <span>Proses <strong>1x24 jam</strong></span>
+      </div>
+      <div class="trust-item">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>File <strong>Word &amp; PDF</strong></span>
+      </div>
+      <div class="trust-item">
+        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <span>Data <strong>aman &amp; rahasia</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TENTANG KAMI -->
+  <section class="section">
+    <div class="wrap">
+      <div class="about-panel reveal" id="tentang-kami">
+        <div class="about-panel-shard" style="top:-40px;right:8%;width:200px;height:200px;transform:rotate(14deg);opacity:.5;"></div>
+        <div class="dots" style="top:24px;left:6%;width:90px;height:60px;z-index:0;"></div>
+        <div class="about-panel-grid">
+          <div class="about-panel-copy">
+            <span class="eyebrow-light">Tentang Kami</span>
+            <h2>Jasa CV ATS Profesional &amp; Bersertifikat</h2>
+            <p>Kami adalah jasa pembuatan CV ATS profesional dan bersertifikat yang telah membantu kandidat lolos ke lebih dari <span class="hl-pill">50+ perusahaan besar</span>, serta dipercaya oleh <span class="hl-pill">100+ customer</span> setiap harinya. Proses pembuatan CV di <strong>@jasacvats.id</strong> menggunakan <span class="hl-pill">100% human touch</span> dari tim Professional CV Maker kami.</p>
+          </div>
+          <div class="about-stats">
+            <div class="about-stat">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 9h1M9 13h1M9 17h1M14 9h1M14 13h1M14 17h1" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div><strong>50+</strong><span>Perusahaan Besar</span></div>
+            </div>
+            <div class="about-stat">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div><strong>100+</strong><span>Customer / Hari</span></div>
+            </div>
+            <div class="about-stat">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.8 4.6c-1.8-1.8-4.8-1.8-6.6 0L12 6.8l-2.2-2.2c-1.8-1.8-4.8-1.8-6.6 0-1.8 1.8-1.8 4.8 0 6.6L12 20l8.8-8.8c1.8-1.8 1.8-4.8 0-6.6z" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div><strong>100%</strong><span>Human Touch</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SPESIALIS BIG COMPANY -->
+  <section class="spes-section" id="spesialis">
+    <div class="spes-shard" style="top:-40px;right:6%;width:220px;height:220px;transform:rotate(12deg);opacity:.55;"></div>
+    <div class="spes-shard" style="bottom:-60px;left:4%;width:260px;height:260px;transform:rotate(-18deg);opacity:.4;"></div>
+    <div class="dots" style="top:60px;left:10%;width:90px;height:60px;"></div>
+    <div class="dots" style="bottom:70px;right:12%;width:90px;height:60px;"></div>
+    <div class="wrap">
+      <div class="spes-head reveal">
+        <span class="spes-kicker">Spesialis</span>
+        <span class="spes-pill">Big Company</span>
+        <p>Telah terbukti meloloskan customer ke <span class="hl-pill">50+ Big Company</span></p>
+      </div>
+      <div class="logo-float-grid reveal">
+        <div class="logo-chip"><img src="assets/logos/shopee.png" alt="Shopee"><small>E-commerce</small></div>
+        <div class="logo-chip"><img src="assets/logos/unilever.png" alt="Unilever"><small>FMCG</small></div>
+        <div class="logo-chip"><img src="assets/logos/bp.png" alt="bp"><small>Energy</small></div>
+        <div class="logo-chip"><img src="assets/logos/pertamina.png" alt="Pertamina"><small>Energy</small></div>
+        <div class="logo-chip"><img src="assets/logos/united-tractors.png" alt="United Tractors"><small>Heavy Equipment</small></div>
+        <div class="logo-chip"><img src="assets/logos/baker-hughes.png" alt="Baker Hughes"><small>Energy</small></div>
+        <div class="logo-chip"><img src="assets/logos/halliburton.png" alt="Halliburton"><small>Oil &amp; Gas</small></div>
+        <div class="logo-chip"><img src="assets/logos/paragoncorp.png" alt="ParagonCorp"><small>Cosmetics</small></div>
+        <div class="logo-chip"><img src="assets/logos/astra.png" alt="Astra"><small>Conglomerate</small></div>
+        <div class="logo-chip"><img src="assets/logos/slb.png" alt="slb"><small>Oilfield Services</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KENAPA ATS -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head center reveal" id="kenapa-ats" style="text-align:center;margin-inline:auto;">
+        <span class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01" stroke-linecap="round"/></svg>
+          Kenapa Ini Penting
+        </span>
+        <h2 style="margin-top:14px;">Kenapa CV kamu bisa ditolak tanpa sempat dibaca?</h2>
+        <p class="lede">Banyak perusahaan pakai sistem ATS buat menyaring ratusan lamaran secara otomatis sebelum sampai ke meja HRD. CV yang formatnya nggak "ramah sistem" bisa gagal duluan di tahap ini.</p>
+      </div>
+      <div class="why-grid">
+        <div class="why-card bad reveal">
+          <span class="why-tag">Berisiko tersaring</span>
+          <h3>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D9694E" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M15 9l-6 6M9 9l6 6" stroke-linecap="round"/></svg>
+            CV Format Bebas
+          </h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg>Pakai kolom/tabel yang bikin sistem salah baca urutan teks</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg>Font dekoratif atau ukuran yang nggak konsisten</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg>Struktur tanpa heading jelas (Pengalaman, Pendidikan, dst)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg>Nggak ada keyword yang relevan dengan lowongan</li>
+          </ul>
+        </div>
+        <div class="why-card good reveal">
+          <span class="why-tag">Siap diproses sistem</span>
+          <h3>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2E5BFF" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 12.5l2.5 2.5L16 9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            CV ATS Apik
+          </h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.5l4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Layout satu kolom, urutan teks terbaca sistem dengan benar</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.5l4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Font standar &amp; ukuran konsisten di seluruh dokumen</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.5l4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Struktur &amp; heading jelas per bagian</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12.5l4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>Keyword disesuaikan dengan posisi yang dilamar</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAKET HARGA -->
+  <section class="section">
+    <div class="wrap">
+      <div class="pricing-head reveal" id="paket-harga">
+        <span class="eyebrow">Paket Harga</span>
+        <h2 style="margin-top:14px;">Pilih paket sesuai kebutuhan kamu</h2>
+        <p>Semua sudah termasuk file Word &amp; PDF, siap dipakai langsung untuk melamar kerja.</p>
+      </div>
+
+      <div class="price-grid">
+        <div class="price-card reveal">
+          <div class="price-pkg">Paket 1</div>
+          <h3>CV ATS 1 Bahasa</h3>
+          <div class="price-amount">Rp30.000</div>
+          <div class="price-formats">
+            <span class="fmt-row">
+              <svg class="ic-doc sm word" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="white">W</text></svg>
+              Word
+            </span>
+            <span class="fmt-row">
+              <svg class="ic-doc sm pdf" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="white" letter-spacing="0.5">PDF</text></svg>
+              PDF
+            </span>
+          </div>
+          <ul class="price-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS PDF (Indonesia / Inggris)</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS Word (Indonesia / Inggris)</li>
+          </ul>
+          <a href="#" class="btn btn-ghost wa-cta" data-msg="Halo, saya mau order Paket 1 - CV ATS 1 Bahasa (Rp30.000).">Pilih Paket Ini</a>
+        </div>
+
+        <div class="price-card featured reveal">
+          <div class="price-ribbon pink">Best Seller!</div>
+          <div class="price-pkg">Paket 2</div>
+          <h3>CV ATS 2 Bahasa</h3>
+          <div class="price-amount">Rp50.000</div>
+          <div class="price-formats">
+            <span class="fmt-row">
+              <svg class="ic-doc sm word" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="white">W</text></svg>
+              Word
+            </span>
+            <span class="fmt-row">
+              <svg class="ic-doc sm pdf" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="white" letter-spacing="0.5">PDF</text></svg>
+              PDF
+            </span>
+          </div>
+          <ul class="price-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS PDF Indonesia</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS Word Indonesia</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS PDF Inggris</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS Word Inggris</li>
+          </ul>
+          <a href="#" class="btn btn-primary wa-cta" data-msg="Halo, saya mau order Paket 2 - CV ATS 2 Bahasa (Rp50.000).">Pilih Paket Ini</a>
+        </div>
+
+        <div class="price-card reveal">
+          <div class="price-ribbon yellow">Lebih Hemat!</div>
+          <div class="price-pkg">Paket 3</div>
+          <h3>CV ATS + Surat Lamaran 1 Bahasa</h3>
+          <div class="price-amount">Rp50.000</div>
+          <div class="price-formats">
+            <span class="fmt-row">
+              <svg class="ic-doc sm word" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="white">W</text></svg>
+              Word
+            </span>
+            <span class="fmt-row">
+              <svg class="ic-doc sm pdf" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="white" letter-spacing="0.5">PDF</text></svg>
+              PDF
+            </span>
+          </div>
+          <ul class="price-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS PDF Indonesia / Inggris</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS Word Indonesia / Inggris</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Surat Lamaran PDF Indonesia / Inggris</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Surat Lamaran Word Indonesia / Inggris</li>
+          </ul>
+          <a href="#" class="btn btn-ghost wa-cta" data-msg="Halo, saya mau order Paket 3 - CV ATS + Surat Lamaran 1 Bahasa (Rp50.000).">Pilih Paket Ini</a>
+        </div>
+
+        <div class="price-card reveal">
+          <div class="price-ribbon green">Diskon Besar!</div>
+          <div class="price-pkg">Paket 4</div>
+          <h3>CV ATS + Surat Lamaran 2 Bahasa</h3>
+          <div class="price-amount">Rp80.000</div>
+          <div class="price-formats">
+            <span class="fmt-row">
+              <svg class="ic-doc sm word" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="white">W</text></svg>
+              Word
+            </span>
+            <span class="fmt-row">
+              <svg class="ic-doc sm pdf" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="white" letter-spacing="0.5">PDF</text></svg>
+              PDF
+            </span>
+          </div>
+          <ul class="price-feats">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS PDF INA</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS Word INA</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Surat Lamaran PDF INA</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Surat Lamaran Word INA</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS PDF ENG</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>CV ATS Word ENG</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Surat Lamaran PDF ENG</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Surat Lamaran Word ENG</li>
+          </ul>
+          <a href="#" class="btn btn-ghost wa-cta" data-msg="Halo, saya mau order Paket 4 - CV ATS + Surat Lamaran 2 Bahasa (Rp80.000).">Pilih Paket Ini</a>
+        </div>
+      </div>
+
+      <!-- SPOTLIGHT: PAKET READY TO WORK -->
+      <div class="spotlight reveal">
+        <span class="spotlight-deco-tri"></span>
+        <div class="dots" style="position:absolute;top:24px;right:30%;width:90px;height:60px;background-image:radial-gradient(rgba(255,255,255,.18) 1.4px, transparent 1.4px);background-size:14px 14px;"></div>
+        <div class="spotlight-grid">
+          <div>
+            <span class="hero-eyebrow" style="font-size:14px;padding:8px 18px;margin-bottom:0;">Ready to Work</span>
+            <h3>Paket Lengkap<br>Siap Kerja</h3>
+            <div class="sub">CV ATS 2 Bahasa, Surat Lamaran 2 Bahasa &amp; Optimasi LinkedIn — paket paling lengkap buat kamu yang mau langsung tancap gas cari kerja.</div>
+            <div class="big-fmt">
+              <svg class="ic-doc lg word" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="white">W</text></svg>
+              <svg class="ic-doc lg pdf" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="white" letter-spacing="0.5">PDF</text></svg>
+            </div>
+            <div class="price-amount">Rp150.000</div>
+            <a href="#" class="btn btn-primary wa-cta" data-msg="Halo, saya mau order Paket Ready to Work - CV ATS 2 Bahasa + Surat Lamaran 2 Bahasa + Optimasi LinkedIn (Rp150.000).">Pilih Paket Ready to Work</a>
+          </div>
+          <div class="spotlight-feats">
+            <div>
+              <h4>
+                <svg class="ic-doc sm word" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="white">W</text></svg>
+                Bahasa Indonesia
+              </h4>
+              <ul>
+                <li>CV ATS PDF INA</li>
+                <li>CV ATS Word INA</li>
+                <li>SL PDF INA</li>
+                <li>SL Word INA</li>
+              </ul>
+            </div>
+            <div>
+              <h4>
+                <svg class="ic-doc sm word" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="white">W</text></svg>
+                Bahasa Inggris
+              </h4>
+              <ul>
+                <li>CV ATS PDF ENG</li>
+                <li>CV ATS Word ENG</li>
+                <li>SL PDF ENG</li>
+                <li>SL Word ENG</li>
+              </ul>
+            </div>
+            <div class="spotlight-li-row">
+              <span class="li-pill">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.94 6 2.5 6S0 4.88 0 3.5 1.04 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8h4V23h-4V8zm7 0h3.8v2.05h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V23h-4v-6.7c0-1.6-.03-3.66-2.23-3.66-2.24 0-2.58 1.75-2.58 3.55V23h-4V8z"/></svg>
+                Optimalisasi LinkedIn Profesional
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SPOTLIGHT: PAKET PORTOFOLIO -->
+      <div class="spotlight reveal" style="margin-top:24px;background:linear-gradient(150deg, var(--navy) 0%, var(--blue-vivid-dark) 100%);">
+        <span class="spotlight-deco-tri"></span>
+        <div class="dots" style="position:absolute;top:24px;right:30%;width:90px;height:60px;background-image:radial-gradient(rgba(255,255,255,.18) 1.4px, transparent 1.4px);background-size:14px 14px;"></div>
+        <div class="spotlight-grid">
+          <div>
+            <span class="hero-eyebrow" style="font-size:14px;padding:8px 18px;margin-bottom:0;">Paling Lengkap</span>
+            <h3>Paket<br>Portofolio</h3>
+            <div class="sub">CV ATS 2 Bahasa, Surat Lamaran 2 Bahasa &amp; Portofolio Profesional — buat kamu yang mau tampil paling maksimal di mata recruiter.</div>
+            <div class="big-fmt">
+              <svg class="ic-doc lg word" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="white">W</text></svg>
+              <svg class="ic-doc lg pdf" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="25" text-anchor="middle" font-family="Arial, sans-serif" font-size="7" font-weight="900" fill="white" letter-spacing="0.5">PDF</text></svg>
+            </div>
+            <div class="price-amount">Rp200.000</div>
+            <a href="#" class="btn btn-primary wa-cta" data-msg="Halo, saya mau order Paket Portofolio - CV ATS 2 Bahasa + Surat Lamaran 2 Bahasa + Portofolio Profesional (Rp200.000).">Pilih Paket Portofolio</a>
+          </div>
+          <div class="spotlight-feats">
+            <div>
+              <h4>
+                <svg class="ic-doc sm word" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="white">W</text></svg>
+                Bahasa Indonesia
+              </h4>
+              <ul>
+                <li>CV ATS PDF INA</li>
+                <li>CV ATS Word INA</li>
+                <li>SL PDF INA</li>
+                <li>SL Word INA</li>
+              </ul>
+            </div>
+            <div>
+              <h4>
+                <svg class="ic-doc sm word" viewBox="0 0 32 40" xmlns="http://www.w3.org/2000/svg"><path d="M4 0H20L30 10V36C30 37.6569 28.6569 39 27 39H5C3.34315 39 2 37.6569 2 36V3C2 1.34315 3.34315 0 5 0H4Z" fill="currentColor"/><path d="M20 0V8C20 9.10457 20.8954 10 22 10H30L20 0Z" fill="rgba(0,0,0,.3)"/><text x="16" y="29" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" font-weight="900" fill="white">W</text></svg>
+                Bahasa Inggris
+              </h4>
+              <ul>
+                <li>CV ATS PDF ENG</li>
+                <li>CV ATS Word ENG</li>
+                <li>SL PDF ENG</li>
+                <li>SL Word ENG</li>
+              </ul>
+            </div>
+            <div class="spotlight-li-row">
+              <span class="li-pill">
+                <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2" stroke-linecap="round"/></svg>
+                Portofolio Profesional (custom design)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DETAIL PAKET (contoh asli per paket, dari PDF) -->
+ <section class="section detail-paket-section">
+    <div class="wrap">
+      <div class="section-head center reveal" id="detail-paket" style="text-align:center;margin-inline:auto;">
+        <span class="eyebrow">Detail Paket</span>
+        <h2 style="margin-top:14px;">Contoh hasil tiap paket</h2>
+        <p class="lede" style="margin-inline:auto;">Klik salah satu paket buat lihat contoh hasil aslinya — persis seperti yang kamu terima.</p>
+      </div>
+
+      <div class="detail-tabs reveal">
+        <button class="detail-tab active" data-tab="d1">Paket 1</button>
+        <button class="detail-tab" data-tab="d2">Paket 2</button>
+        <button class="detail-tab" data-tab="d3">Paket 3</button>
+        <button class="detail-tab" data-tab="d4">Paket 4</button>
+        <button class="detail-tab" data-tab="d5">Ready to Work</button>
+        <button class="detail-tab" data-tab="d6">Portofolio</button>
+      </div>
+
+      <div class="detail-panels reveal">
+        <div class="detail-panel active" id="d1">
+          <figure class="detail-figure"><img src="assets/detail/paket1.jpg" alt="Contoh CV ATS 1 Bahasa - Paket 1" loading="lazy"></figure>
+          <p class="detail-caption">Paket 1 — CV ATS 1 Bahasa</p>
+        </div>
+        <div class="detail-panel" id="d2">
+          <figure class="detail-figure"><img src="assets/detail/paket2.jpg" alt="Contoh CV ATS 2 Bahasa - Paket 2" loading="lazy"></figure>
+          <p class="detail-caption">Paket 2 — CV ATS 2 Bahasa</p>
+        </div>
+        <div class="detail-panel" id="d3">
+          <figure class="detail-figure"><img src="assets/detail/paket3.jpg" alt="Contoh CV ATS + Surat Lamaran 1 Bahasa - Paket 3" loading="lazy"></figure>
+          <p class="detail-caption">Paket 3 — CV ATS + Surat Lamaran 1 Bahasa</p>
+        </div>
+        <div class="detail-panel" id="d4">
+          <figure class="detail-figure"><img src="assets/detail/paket4.jpg" alt="Contoh CV ATS + Surat Lamaran 2 Bahasa - Paket 4" loading="lazy"></figure>
+          <p class="detail-caption">Paket 4 — CV ATS + Surat Lamaran 2 Bahasa</p>
+        </div>
+        <div class="detail-panel" id="d5">
+          <figure class="detail-figure"><img src="assets/detail/ready-to-work.jpg" alt="Contoh Paket Ready to Work" loading="lazy"></figure>
+          <p class="detail-caption">Paket Ready to Work — CV + Surat Lamaran 2 Bahasa + Optimasi LinkedIn</p>
+        </div>
+        <div class="detail-panel" id="d6">
+          <figure class="detail-figure"><img src="assets/detail/portofolio.jpg" alt="Contoh Paket Portofolio" loading="lazy"></figure>
+          <p class="detail-caption">Paket Portofolio — CV + Surat Lamaran 2 Bahasa + Portofolio Profesional</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINKEDIN SHOWCASE (with real avatars) -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head center reveal" id="linkedin" style="text-align:center;margin-inline:auto;">
+        <span class="eyebrow">Optimasi LinkedIn</span>
+        <h2 style="margin-top:14px;">Profil LinkedIn kamu juga ikut dipoles</h2>
+        <p class="lede" style="margin-inline:auto;">Headline, ringkasan About, sampai kata kunci disesuaikan biar profil kamu lebih gampang ditemukan recruiter — bukan cuma CV yang rapi.</p>
+      </div>
+      <div class="li-grid">
+        <div class="li-card reveal">
+          <div class="li-cover"><span class="li-optim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Dioptimalkan</span></div>
+          <div class="li-body">
+            <div class="li-avatar" style="background-image:url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=160&h=160&q=80&auto=format&fit=crop&crop=faces')"></div>
+            <div class="li-name">Salsa Amelia</div>
+            <div class="li-role">Content &amp; Social Media Specialist | Digital Marketing</div>
+            <div class="li-about">"Membantu brand tumbuh lewat strategi konten berbasis data — pengalaman mengelola kampanye multi-platform dengan hasil terukur."</div>
+          </div>
+        </div>
+        <div class="li-card reveal">
+          <div class="li-cover"><span class="li-optim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Dioptimalkan</span></div>
+          <div class="li-body">
+            <div class="li-avatar" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=160&h=160&q=80&auto=format&fit=crop&crop=faces')"></div>
+            <div class="li-name">Rio Pratama</div>
+            <div class="li-role">Supply Chain Analyst | Logistik &amp; Operasional</div>
+            <div class="li-about">"Fokus pada efisiensi rantai pasok dan pengelolaan inventori untuk mendukung operasional yang lebih ringkas dan akurat."</div>
+          </div>
+        </div>
+        <div class="li-card reveal">
+          <div class="li-cover"><span class="li-optim"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7"/></svg>Dioptimalkan</span></div>
+          <div class="li-body">
+            <div class="li-avatar" style="background-image:url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=160&h=160&q=80&auto=format&fit=crop&crop=faces')"></div>
+            <div class="li-name">Kirana Dewi</div>
+            <div class="li-role">HR &amp; People Development</div>
+            <div class="li-about">"Berpengalaman menyusun program pengembangan karyawan dan proses rekrutmen yang lebih terstruktur."</div>
+          </div>
+        </div>
+      </div>
+      <p style="text-align:center;color:var(--ink-mute);font-size:12.5px;margin-top:22px;">*Contoh di atas adalah mockup ilustratif dengan nama fiktif — ganti dengan contoh profil asli (dengan izin klien terkait) sebelum publish.</p>
+    </div>
+  </section>
+
+  <!-- CARA ORDER -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head center reveal" id="cara-order" style="text-align:center;margin-inline:auto;">
+        <span class="eyebrow">Cara Order</span>
+        <h2 style="margin-top:14px;">Empat langkah, kamu langsung Ready to Work</h2>
+      </div>
+      <div class="process-grid">
+        <div class="process-item reveal">
+          <div class="process-num">01</div>
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.27 6.96L12 12.01l8.73-5.05M12 22.08V12" stroke-linecap="round"/></svg>
+            Pilih Paket
+          </h3>
+          <p>Tentukan paket yang sesuai kebutuhan &amp; budget kamu.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">02</div>
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Kirim Data
+          </h3>
+          <p>Isi data diri &amp; pengalaman kerja lewat WhatsApp.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">03</div>
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3M21 12a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round"/></svg>
+            Proses 1x24 Jam
+          </h3>
+          <p>Tim kami susun CV, surat lamaran, dan/atau profil LinkedIn kamu.</p>
+        </div>
+        <div class="process-item reveal">
+          <div class="process-num">04</div>
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Siap Pakai
+          </h3>
+          <p>Terima file Word &amp; PDF, langsung kirim ke lowongan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONI -->
+  <section class="section">
+    <div class="wrap">
+      <div class="testi-head reveal" id="testimoni">
+        <span class="eyebrow">Testimoni</span>
+        <h2 style="margin-top:14px;">Chat beneran dari customer</h2>
+        <p>Yang udah order dan happy dengan hasilnya — semuanya nyata.</p>
+      </div>
+      <div class="testi-grid">
+        <figure class="testi-shot-figure reveal">
+          <img src="assets/testi-1.png" alt="Testimoni customer 1" loading="lazy">
+        </figure>
+        <figure class="testi-shot-figure reveal">
+          <img src="assets/testi-2.png" alt="Testimoni customer 2" loading="lazy">
+        </figure>
+        <figure class="testi-shot-figure reveal">
+          <img src="assets/testi-3.png" alt="Testimoni customer 3" loading="lazy">
+        </figure>
+        <figure class="testi-shot-figure reveal">
+          <img src="assets/testi-4.png" alt="Testimoni customer 4" loading="lazy">
+        </figure>
+      </div>
+
+     
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head center reveal" id="faq" style="text-align:center;margin-inline:auto;">
+        <span class="eyebrow">FAQ</span>
+        <h2 style="margin-top:14px;">Pertanyaan yang sering ditanya</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq reveal" open>
+          <summary>Berapa lama proses pengerjaan CV ATS?</summary>
+          <p>Standarnya 1x24 jam setelah semua data kami terima. Kalau kamu butuh lebih cepat (misal 6-12 jam), bisa request express via WhatsApp.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Apa bedanya CV ATS dengan CV biasa?</summary>
+          <p>CV ATS dirancang supaya terbaca baik sama sistem ATS (Applicant Tracking System) yang dipakai banyak perusahaan — mulai dari struktur, font, sampai penempatan keyword. CV biasa yang penuh kolom/desain justru sering gagal di tahap screening otomatis.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Apakah data saya aman dan nggak disebar?</summary>
+          <p>Aman. Data CV hanya dipakai untuk pengerjaan, tidak kami simpan permanen, dan tidak akan dishare ke pihak manapun. Privasi kamu prioritas kami.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Bisa revisi kalau ada yang kurang sesuai?</summary>
+          <p>Bisa. Kami kasih 1x revisi minor gratis (typo, urutan, atau info yang kelewat). Revisi besar (ganti posisi yang dilamar) dihitung sebagai order baru.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Format file apa yang akan saya dapat?</summary>
+          <p>Kamu akan dapat file dalam format Microsoft Word (.docx) supaya bisa edit sendiri, plus PDF jadi final yang siap kirim ke HRD/recruiter.</p>
+        </details>
+        <details class="faq reveal">
+          <summary>Metode pembayarannya gimana?</summary>
+          <p>Transfer bank (BCA, BRI, Mandiri, BNI) dan e-wallet (OVO, GoPay, DANA, ShopeePay) tersedia. Detail akan diinfokan setelah kamu order lewat WhatsApp.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="dots" style="position:absolute;top:30px;left:8%;width:100px;height:60px;background-image:radial-gradient(rgba(255,255,255,.18) 1.4px, transparent 1.4px);background-size:14px 14px;"></div>
+    <div class="dots" style="position:absolute;bottom:30px;right:8%;width:100px;height:60px;background-image:radial-gradient(rgba(255,255,255,.18) 1.4px, transparent 1.4px);background-size:14px 14px;"></div>
+    <div class="wrap">
+      <div class="final-cta-inner">
+        <div>
+          <span class="badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M5 12.5l4.5 4.5L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Ready to Work
+          </span>
+          <h2>Siap tampil Ready to Work?</h2>
+          <p>Jangan biarkan sistem otomatis atau profil yang kurang maksimal menggagalkan lamaran kamu duluan.</p>
+          <a href="#" class="btn btn-primary wa-cta" data-msg="Halo, saya mau order jasa pembuatan CV ATS.">Chat via WhatsApp Sekarang</a>
+        </div>
+        <div class="final-cta-image">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=600&h=450&q=80&auto=format&fit=crop" alt="Profesional sedang bekerja" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="#beranda" class="logo">
+          <img src="assets/logos/jasacvats.png" alt="CVATS.id">
+        </a>
+        <p>Jasa pembuatan CV ATS, surat lamaran &amp; optimasi LinkedIn profesional — bikin kamu Ready to Work.</p>
+        <div class="foot-social">
+          <a href="https://instagram.com/jasacvatsid" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          </a>
+          <a href="#" class="wa-cta" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS." aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Navigasi</h4>
+          <ul>
+            <li><a href="#beranda">Beranda</a></li>
+            <li><a href="#tentang-kami">Tentang Kami</a></li>
+            <li><a href="#detail-paket">Detail Paket</a></li>
+            <li><a href="#paket-harga">Paket Harga</a></li>
+            <li><a href="#testimoni">Testimoni</a></li>
+            <li><a href="#faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Kontak</h4>
+          <ul>
+            <li><a href="#" class="wa-cta" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS.">WhatsApp Admin</a></li>
+            <li><a href="https://instagram.com/jasacvatsid" target="_blank" rel="noopener">@jasacvatsid</a></li>
+            <li><a href="mailto:halo@cvats.id">halo@cvats.id</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 CVATS.id — Jasa Pembuatan CV ATS &amp; Optimasi LinkedIn Profesional</span>
+      <span>Indonesia</span>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="wa-float wa-cta" id="waFloat" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS." aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+</a>
+
+<script>
+  // ====== EDIT INI: nomor WhatsApp asli, format 62xxxxxxxxxx (tanpa spasi/plus) ======
+  const WA_NUMBER = "6281234567890";
+
+  document.querySelectorAll('.wa-cta').forEach(el=>{
+    const msg = el.getAttribute('data-msg') || 'Halo, saya mau tanya soal jasa CV ATS.';
+    el.setAttribute('href', `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`);
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  });
+
+  const header = document.getElementById('siteHeader');
+
+  // Keep a live CSS var with the actual rendered header height, so
+  // scroll-margin-top on section targets always matches the real
+  // sticky header — even if it changes across breakpoints or on load.
+  function syncHeaderHeight(){
+    document.documentElement.style.setProperty('--header-h', header.getBoundingClientRect().height + 'px');
+  }
+  syncHeaderHeight();
+  window.addEventListener('resize', syncHeaderHeight);
+
+  window.addEventListener('scroll', ()=>{
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, {passive:true});
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  function openMobileNav(){
+    navLinks.classList.add('open');
+    navLinks.style.cssText = 'display:flex;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:20px 24px;border-bottom:1px solid var(--line);gap:18px;box-shadow:0 14px 30px -18px rgba(10,26,61,.18);';
+  }
+  function closeMobileNav(){
+    navLinks.classList.remove('open');
+    navLinks.style.cssText = '';
+  }
+
+  navToggle.addEventListener('click', ()=>{
+    if(navLinks.classList.contains('open')) closeMobileNav();
+    else openMobileNav();
+  });
+
+  // ===== Precise single-click smooth scroll =====
+  // Two behaviors depending on whether the target section fits inside
+  // the viewport below the sticky header:
+  //  - SHORT sections (fit entirely below the header, e.g. "Tentang
+  //    Kami"): center the section in that available space so there's
+  //    equal breathing room above and below — avoids the "empty gap on
+  //    top, cramped at bottom" look.
+  //  - TALL sections (don't fit, e.g. "Testimoni", "Paket Harga",
+  //    "FAQ"): can't be centered without cutting off content on both
+  //    ends, so top-align the heading with a small, fixed gap under
+  //    the header instead — maximizes how much of the section is
+  //    visible right after scrolling.
+  function scrollToId(id){
+    const target = document.querySelector(id);
+    if(!target) return;
+
+    // Kalau target masih ber-class "reveal" dan belum pernah terlihat,
+    // posisinya masih tergeser translateY(20px) sampai IntersectionObserver
+    // mendeteksinya SETELAH discroll — bikin klik pertama mendarat kemepetan.
+    // Tambahkan "in-view" duluan supaya posisi yang diukur sudah final.
+    if (target.classList.contains('reveal') && !target.classList.contains('in-view')) {
+  target.style.transition = 'none';   // matikan animasi sesaat
+  target.classList.add('in-view');
+  target.offsetHeight;                // paksa reflow biar transform langsung diterapkan
+  target.style.transition = '';       // kembalikan transition normal utk elemen reveal lain
+}
+
+    const headerH = header.getBoundingClientRect().height;
+    const availableH = window.innerHeight - headerH;
+    const smallGap = 20;
+
+    // Section dengan tab interaktif (kontennya berubah-ubah tinggi
+    // tergantung tab yang aktif) selalu di-top-align, jangan di-center,
+    // supaya konsisten dengan Harga/Testimoni/FAQ.
+    const forceTopAlign = ['#detail-paket'];
+    if (forceTopAlign.includes(id)) {
+      const targetRect = target.getBoundingClientRect();
+      const y = targetRect.top + window.pageYOffset - headerH - smallGap;
+      window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
+      history.pushState(null, '', id);
+      return;
+    }
+
+    // Use the closest .wrap (the real content container, without the
+    // enclosing <section>'s own top/bottom padding) to judge how tall
+    // the full visual block actually is. Using the <section> itself
+    // was overcounting ~176px of its padding as "content", which made
+    // short blocks like "Tentang Kami" look too tall to fit and fall
+    // into the top-align branch instead of being centered. Falls back
+    // to the enclosing <section> for cases where the id sits directly
+    // on a <section> (e.g. the hero).
+    const block = target.closest('.wrap') || target.closest('section') || target;
+    const blockRect = block.getBoundingClientRect();
+    const targetRect = target.getBoundingClientRect();
+
+    let y;
+    if (blockRect.height <= availableH) {
+      // Fits in the viewport: center it in the space below the header.
+      const extraSpace = availableH - blockRect.height;
+      y = blockRect.top + window.pageYOffset - headerH - (extraSpace / 2);
+    } else {
+      // Too tall to fit: top-align the heading with a small gap.
+      y = targetRect.top + window.pageYOffset - headerH - smallGap;
+    }
+
+    window.scrollTo({ top: Math.max(y, 0), behavior: 'smooth' });
+    history.pushState(null, '', id);
+  }
+
+  document.querySelectorAll('a[href^="#"]').forEach(link=>{
+    const href = link.getAttribute('href');
+    if(!href || href.length < 2) return; // skip bare "#" (e.g. WA buttons before JS rewrite)
+    link.addEventListener('click', (e)=>{
+      const target = document.querySelector(href);
+      if(!target) return;
+      e.preventDefault();
+      if(navLinks.classList.contains('open')) closeMobileNav();
+      scrollToId(href);
+    });
+  });
+
+  // WA Float: hide on scroll down, show on scroll up
+  const waFloat = document.getElementById('waFloat');
+  let lastScroll = 0;
+  window.addEventListener('scroll', ()=>{
+    const cur = window.scrollY;
+    if(cur > lastScroll && cur > 240){
+      waFloat.classList.add('hide');
+    } else {
+      waFloat.classList.remove('hide');
+    }
+    lastScroll = cur;
+  }, {passive:true});
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if(!reduceMotion){
+    document.body.classList.add('js-enhanced');
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in-view'); io.unobserve(e.target); } });
+    }, {threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el=>el.style.opacity=1);
+  }
+
+  // Detail Paket tabs
+  const detailTabs = document.querySelectorAll('.detail-tab');
+  const detailPanels = document.querySelectorAll('.detail-panel');
+  detailTabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      detailTabs.forEach(t=>t.classList.remove('active'));
+      detailPanels.forEach(p=>p.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

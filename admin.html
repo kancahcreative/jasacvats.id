@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Artikel | CVATS.id</title>
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/quill-blot-formatter@1.0.5/dist/quill-blot-formatter.min.js"></script>
+
+<style>
+  :root{
+    --navy-deep:#0A1A3D; --navy:#152C5E; --navy-mid:#1E3A8A;
+    --blue-vivid:#2E5BFF; --blue-vivid-dark:#1E45E0; --blue-light:#7AA2FF; --blue-pale:#C9D7FF;
+    --sky-soft:#EEF3FF; --bg:#F4F7FE; --line:#E2E8F4;
+    --ink:#0A1A3D; --ink-soft:#4B5675; --ink-mute:#7A86A3;
+    --shadow-sm:0 6px 20px -8px rgba(10,26,61,.12);
+    --shadow-md:0 18px 40px -16px rgba(10,26,61,.18);
+    --shadow-lg:0 30px 60px -22px rgba(10,26,61,.28);
+    --radius-xl:28px; --radius-lg:20px; --radius-md:14px; --maxw:980px;
+    --red:#D9424E; --green:#1FAA59;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;color:var(--ink);font-family:'Satoshi',-apple-system,sans-serif;font-weight:500;line-height:1.55;background:var(--bg);}
+  h1,h2,h3,h4{font-family:'Clash Display',sans-serif;margin:0;color:var(--ink);font-weight:600;letter-spacing:-.01em;}
+  p{margin:0;}
+  a{color:inherit;}
+  input,textarea,select{font-family:'Satoshi',sans-serif;font-size:14.5px;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:32px 24px 80px;}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;border-radius:100px;padding:10px 20px;cursor:pointer;border:none;font-family:'Satoshi',sans-serif;transition:transform .15s;}
+  .btn svg{width:15px;height:15px;flex-shrink:0;}
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:var(--blue-vivid);color:#fff;box-shadow:0 8px 18px -8px rgba(46,91,255,.5);}
+  .btn-primary:hover{background:var(--blue-vivid-dark);}
+  .btn-ghost{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);}
+  .btn-ghost-dark{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.4);}
+  .btn-outline{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+  .btn-danger{background:#FDEEEF;color:var(--red);}
+  .btn-sm{padding:7px 14px;font-size:13px;}
+
+  .dots{position:absolute;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.15) 1.4px, transparent 1.4px);background-size:14px 14px;}
+  .eyebrow{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12.5px;letter-spacing:.01em;color:var(--navy);background:var(--sky-soft);padding:7px 14px;border-radius:100px;}
+  .eyebrow svg{width:14px;height:14px;}
+  .eyebrow-light{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:12px;color:#fff;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);padding:6px 13px;border-radius:100px;margin-bottom:16px;}
+
+  /* ===== AUTH (login/register) ===== */
+  .auth-shell{display:flex;min-height:100vh;}
+  .auth-visual{
+    flex:1;position:relative;overflow:hidden;isolation:isolate;
+    background:linear-gradient(155deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+    color:#fff;display:flex;align-items:center;padding:64px;
+  }
+  .auth-visual::before,.auth-visual::after{content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(90px);z-index:0;}
+  .auth-visual::before{top:-160px;right:-140px;width:460px;height:460px;background:rgba(122,162,255,.38);}
+  .auth-visual::after{bottom:-180px;left:-120px;width:420px;height:420px;background:rgba(255,255,255,.1);}
+  .auth-shard{position:absolute;top:-20px;right:8%;width:220px;height:220px;transform:rotate(16deg);pointer-events:none;z-index:0;background:linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,0) 70%);clip-path:polygon(50% 0%, 100% 35%, 84% 100%, 8% 88%);}
+  .auth-visual-inner{position:relative;z-index:1;max-width:440px;}
+  .auth-logo{display:flex;align-items:center;gap:10px;margin-bottom:34px;}
+  .auth-logo .mark{width:36px;height:36px;border-radius:10px;background:var(--blue-vivid);display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-weight:700;color:#fff;font-size:16px;flex-shrink:0;}
+  .auth-logo .logotxt{font-family:'Clash Display',sans-serif;font-size:17px;font-weight:600;color:#fff;line-height:1.2;}
+  .auth-logo .tag{font-size:11.5px;color:#8FA0D6;}
+  .auth-visual h1{color:#fff;font-size:clamp(26px,3vw,34px);line-height:1.15;margin-bottom:14px;}
+  .auth-visual h1 .hl{background:linear-gradient(180deg,transparent 65%, rgba(122,162,255,.5) 65%);padding:0 6px;}
+  .auth-visual > .auth-visual-inner > p{color:#C8D3EE;font-size:15px;line-height:1.6;margin-bottom:28px;}
+  .auth-feature-list{display:flex;flex-direction:column;gap:12px;}
+  .auth-feature{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:12px 14px;font-size:13.5px;color:#E4EAF7;font-weight:600;}
+  .auth-feature .ic{width:32px;height:32px;border-radius:9px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .auth-feature .ic svg{width:16px;height:16px;color:#fff;}
+
+  .auth-formside{flex:1;display:flex;align-items:center;justify-content:center;padding:40px;}
+  .login-box{width:100%;max-width:400px;background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-md);padding:40px 36px;}
+  .login-box h2{font-size:24px;margin-bottom:6px;}
+  .login-box p.sub{color:var(--ink-soft);font-size:14px;margin-bottom:24px;}
+
+  .auth-tabs{display:flex;background:var(--sky-soft);border-radius:100px;padding:4px;margin-bottom:24px;}
+  .auth-tab{flex:1;text-align:center;padding:9px 0;border-radius:100px;font-weight:700;font-size:13.5px;cursor:pointer;color:var(--ink-mute);transition:.15s;}
+  .auth-tab.active{background:#fff;color:var(--blue-vivid);box-shadow:var(--shadow-sm);}
+
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-weight:700;font-size:13px;color:var(--ink-soft);margin-bottom:6px;}
+  .field input, .field textarea, .field select{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);}
+  .field input:focus, .field textarea:focus, .field select:focus{outline:none;border-color:var(--blue-vivid);}
+  .field textarea{resize:vertical;}
+  .field .hint{font-size:12px;color:var(--ink-mute);margin-top:5px;}
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+
+  .card{background:#fff;border-radius:var(--radius-lg);border:1px solid var(--line);box-shadow:var(--shadow-sm);padding:28px;margin-bottom:24px;}
+  .card h3{font-size:17px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line);}
+  .card-head-row{display:flex;align-items:center;justify-content:space-between;padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:18px;}
+  .count-pill{font-size:12px;font-weight:700;color:var(--ink-mute);background:var(--sky-soft);padding:4px 11px;border-radius:100px;}
+
+  .toggle-row{display:flex;align-items:center;justify-content:space-between;background:var(--sky-soft);border-radius:12px;padding:14px 18px;margin-bottom:16px;}
+  .toggle-row span{font-weight:700;font-size:14px;}
+  .switch{position:relative;width:44px;height:24px;flex-shrink:0;}
+  .switch input{opacity:0;width:0;height:0;}
+  .switch .slider{position:absolute;inset:0;background:#CBD5E1;border-radius:100px;cursor:pointer;transition:.2s;}
+  .switch .slider::before{content:"";position:absolute;width:18px;height:18px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.2s;}
+  .switch input:checked + .slider{background:var(--blue-vivid);}
+  .switch input:checked + .slider::before{transform:translateX(20px);}
+
+  .article-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:14px;margin-bottom:10px;background:#fff;transition:box-shadow .2s, transform .2s;}
+  .article-row:hover{box-shadow:var(--shadow-sm);transform:translateY(-1px);}
+  .article-row-thumb{width:56px;height:56px;border-radius:12px;overflow:hidden;flex-shrink:0;background:var(--sky-soft);display:flex;align-items:center;justify-content:center;}
+  .article-row-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .article-row-thumb svg{width:22px;height:22px;color:var(--blue-vivid);opacity:.6;}
+  .article-row-info{min-width:0;flex:1;}
+  .article-row-info h4{font-size:15px;font-weight:600;margin-bottom:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .article-row-info .meta{font-size:12.5px;color:var(--ink-mute);display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:100px;flex-shrink:0;}
+  .badge.pub{background:#E7F8EE;color:var(--green);}
+  .badge.draft{background:#FDF3E4;color:#B7791F;}
+  .cat-pill{background:var(--sky-soft);color:var(--navy);font-weight:700;font-size:11px;padding:3px 9px;border-radius:100px;}
+  .article-row-actions{display:flex;gap:8px;flex-shrink:0;}
+
+  .msg{padding:12px 16px;border-radius:10px;font-size:13.5px;font-weight:600;margin-bottom:16px;}
+  .msg.ok{background:#E7F8EE;color:var(--green);}
+  .msg.err{background:#FDEEEF;color:var(--red);}
+  .inline-err{font-size:12px;color:var(--red);font-weight:700;margin-top:6px;}
+
+  .empty{text-align:center;color:var(--ink-mute);font-size:14px;padding:32px 0;}
+
+  /* ===== SEO panel ===== */
+  .seo-panel{background:linear-gradient(155deg,var(--navy-deep),var(--navy-mid));border-radius:var(--radius-lg);padding:26px 26px 24px;margin:8px 0 20px;position:relative;overflow:hidden;isolation:isolate;}
+  .seo-panel::before{content:"";position:absolute;top:-60px;right:-40px;width:180px;height:180px;border-radius:50%;background:rgba(122,162,255,.3);filter:blur(50px);z-index:0;pointer-events:none;}
+  .seo-panel > *{position:relative;z-index:1;}
+  .seo-panel .field label{color:#C8D3EE;}
+  .seo-panel .field input{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.22);color:#fff;}
+  .seo-panel .field input::placeholder{color:#8FA0D6;}
+  .seo-panel .field .hint{color:#8FA0D6;}
+  .gp-window{border-radius:12px;overflow:hidden;box-shadow:var(--shadow-md);margin-top:6px;}
+  .gp-chrome{display:flex;gap:6px;padding:10px 12px;background:#E9EBEF;}
+  .gp-chrome span{width:9px;height:9px;border-radius:50%;display:inline-block;}
+  .gp-chrome span:nth-child(1){background:#FF5F57;}
+  .gp-chrome span:nth-child(2){background:#FEBC2E;}
+  .gp-chrome span:nth-child(3){background:#28C840;}
+  .seo-preview{background:#fff;padding:14px 16px;}
+  .seo-preview .url{color:var(--green);font-size:12.5px;}
+  .seo-preview .title{color:#1A0DAB;font-size:16px;margin:2px 0;}
+  .seo-preview .desc{color:var(--ink-soft);font-size:12.5px;}
+
+  /* ===== Cover image dropzone ===== */
+  .cover-drop{position:relative;border:1.5px dashed var(--line);border-radius:var(--radius-md);min-height:180px;display:flex;align-items:center;justify-content:center;cursor:pointer;background:var(--sky-soft);transition:border-color .2s,background .2s;overflow:hidden;}
+  .cover-drop.dragover{border-color:var(--blue-vivid);background:#E4ECFF;}
+  .cover-drop-empty{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--ink-soft);font-size:13.5px;text-align:center;padding:24px;}
+  .cover-drop-empty svg{width:28px;height:28px;color:var(--blue-vivid);}
+  .cover-drop-empty .hint2{font-size:11.5px;color:var(--ink-mute);}
+  .cover-drop-preview{position:relative;width:100%;height:220px;}
+  .cover-drop-preview img{width:100%;height:100%;object-fit:cover;display:block;}
+  .cover-drop-overlay{position:absolute;inset:0;background:rgba(10,26,61,.5);display:flex;align-items:center;justify-content:center;gap:10px;opacity:0;transition:opacity .2s;}
+  .cover-drop-preview:hover .cover-drop-overlay{opacity:1;}
+  .cover-drop-uploading{display:flex;align-items:center;gap:10px;color:var(--ink-soft);font-size:13.5px;font-weight:700;}
+  .spinner{width:16px;height:16px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--blue-vivid);animation:spin .7s linear infinite;flex-shrink:0;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .link-toggle{background:none;border:none;color:var(--blue-vivid);font-weight:700;font-size:12.5px;cursor:pointer;padding:8px 0 0;text-decoration:underline;}
+
+  /* ===== Rich text editor (Quill) ===== */
+  .editor-shell{border:1.5px solid var(--line);border-radius:var(--radius-md);overflow:hidden;background:#fff;transition:border-color .2s;}
+  .editor-shell:focus-within{border-color:var(--blue-vivid);}
+  #quillEditor .ql-editor{min-height:360px;font-family:'Satoshi',sans-serif;font-size:15px;color:var(--ink);}
+  #quillEditor .ql-editor.ql-blank::before{color:var(--ink-mute);font-style:normal;font-family:'Satoshi',sans-serif;}
+  #quillEditor .ql-editor h1,#quillEditor .ql-editor h2,#quillEditor .ql-editor h3,#quillEditor .ql-editor h4{font-family:'Clash Display',sans-serif;color:var(--ink);font-weight:600;}
+  #quillEditor .ql-editor img{border-radius:10px;max-width:100%;}
+  #quillEditor .ql-editor a{color:var(--blue-vivid);}
+  .ql-toolbar.ql-snow{border:none;border-bottom:1.5px solid var(--line);background:var(--sky-soft);padding:10px 12px;}
+  .ql-container.ql-snow{border:none;font-family:'Satoshi',sans-serif;}
+  .ql-snow .ql-stroke{stroke:var(--ink-soft);}
+  .ql-snow .ql-fill{fill:var(--ink-soft);}
+  .ql-snow .ql-picker{color:var(--ink-soft);}
+  .ql-toolbar.ql-snow button:hover .ql-stroke, .ql-toolbar.ql-snow button.ql-active .ql-stroke, .ql-snow .ql-picker-label:hover .ql-stroke{stroke:var(--blue-vivid) !important;}
+  .ql-toolbar.ql-snow button:hover .ql-fill, .ql-toolbar.ql-snow button.ql-active .ql-fill{fill:var(--blue-vivid) !important;}
+  .ql-toolbar.ql-snow button.ql-active, .ql-snow .ql-picker-label.ql-active, .ql-snow .ql-picker-item.ql-selected{color:var(--blue-vivid) !important;}
+  .word-count-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;}
+
+  #hidden-app{display:none;}
+
+  /* ===== ADMIN DASHBOARD LAYOUT ===== */
+  .dashboard-shell{display:flex;min-height:100vh;}
+
+  .sidebar{width:264px;flex-shrink:0;position:fixed;top:0;left:0;bottom:0;z-index:60;background:linear-gradient(190deg, var(--navy-deep) 0%, var(--navy) 100%);display:flex;flex-direction:column;transition:transform .25s ease;overflow:hidden;isolation:isolate;}
+  .sidebar::before{content:"";position:absolute;top:-100px;left:-80px;width:260px;height:260px;border-radius:50%;background:rgba(122,162,255,.18);filter:blur(60px);pointer-events:none;z-index:0;}
+  .sidebar-brand{padding:26px 24px 18px;display:flex;align-items:center;gap:10px;position:relative;z-index:1;}
+  .sidebar-brand .mark{width:34px;height:34px;border-radius:10px;background:var(--blue-vivid);display:flex;align-items:center;justify-content:center;font-family:'Clash Display',sans-serif;font-weight:700;color:#fff;font-size:16px;flex-shrink:0;}
+  .sidebar-brand .txt .logo{font-family:'Clash Display',sans-serif;font-size:17px;font-weight:600;color:#fff;line-height:1.2;}
+  .sidebar-brand .txt .tag{font-size:11.5px;color:#8FA0D6;}
+
+  .sidebar-nav{flex:1;padding:10px 14px;overflow-y:auto;position:relative;z-index:1;}
+  .nav-section-label{font-size:11px;font-weight:700;color:#6E7FB0;text-transform:uppercase;letter-spacing:.06em;padding:14px 14px 8px;}
+  .nav-item{display:flex;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;color:#C7D2F0;font-weight:600;font-size:14px;cursor:pointer;margin-bottom:3px;transition:background .15s,color .15s;}
+  .nav-item svg{width:18px;height:18px;flex-shrink:0;opacity:.85;}
+  .nav-item:hover{background:rgba(255,255,255,.08);color:#fff;}
+  .nav-item.active{background:var(--blue-vivid);color:#fff;box-shadow:0 10px 22px -8px rgba(46,91,255,.6);}
+  .nav-item.active svg{opacity:1;}
+
+  .sidebar-footer{padding:14px 16px 20px;border-top:1px solid rgba(255,255,255,.08);position:relative;z-index:1;}
+  .sidebar-user{display:flex;align-items:center;gap:10px;padding:8px;border-radius:12px;margin-bottom:8px;}
+  .avatar{width:36px;height:36px;border-radius:50%;background:var(--blue-vivid);display:flex;align-items:center;justify-content:center;font-weight:700;color:#fff;font-size:13.5px;flex-shrink:0;}
+  .avatar.lg{width:76px;height:76px;font-size:26px;border:4px solid #fff;box-shadow:0 6px 14px -4px rgba(10,26,61,.3);}
+  .sidebar-user-info{min-width:0;}
+  .sidebar-user-info .name{font-size:13.5px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;}
+  .sidebar-user-info .role{font-size:11.5px;color:#8FA0D6;text-transform:capitalize;}
+  .logout-item{width:100%;justify-content:center;}
+
+  .sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(10,26,61,.5);z-index:55;}
+  .sidebar-overlay.show{display:block;}
+
+  .main-area{margin-left:264px;flex:1;min-width:0;}
+  .topbar{position:sticky;top:0;background:#fff;border-bottom:1px solid var(--line);padding:16px 32px;display:flex;align-items:center;justify-content:space-between;z-index:20;}
+  .topbar-left{display:flex;align-items:center;gap:14px;}
+  .topbar h2{font-size:19px;}
+  .topbar .topsub{font-size:12.5px;color:var(--ink-mute);margin-top:1px;}
+  .hamburger{display:none;width:38px;height:38px;border-radius:10px;border:1.5px solid var(--line);background:#fff;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;}
+  .hamburger svg{width:18px;height:18px;}
+
+  .content-wrap{padding:28px 32px 80px;max-width:1040px;}
+  .content-section{display:none;}
+  .content-section.active{display:block;}
+
+  /* Dashboard summary — reuses the main site's navy about-panel/about-stat motif
+     instead of a generic "3 white cards with a colored top bar" admin layout. */
+  .dash-panel{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(155deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);border-radius:var(--radius-xl);padding:34px 36px;margin-bottom:24px;box-shadow:var(--shadow-lg);}
+  .dash-panel::before,.dash-panel::after{content:"";position:absolute;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0;}
+  .dash-panel::before{top:-120px;right:-90px;width:280px;height:280px;background:rgba(122,162,255,.35);}
+  .dash-panel::after{bottom:-110px;left:-80px;width:240px;height:240px;background:rgba(255,255,255,.08);}
+  .dash-shard{position:absolute;top:-16px;right:12%;width:150px;height:150px;transform:rotate(18deg);z-index:0;pointer-events:none;background:linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,0) 70%);clip-path:polygon(50% 0%, 100% 35%, 84% 100%, 8% 88%);}
+  .dash-panel-inner{position:relative;z-index:1;}
+  .dash-panel-inner h3{color:#fff;font-size:clamp(19px,2.2vw,24px);}
+  .dash-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:22px;}
+  .dash-stat{display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-lg);padding:16px 18px;transition:transform .2s ease,background .2s ease;}
+  .dash-stat:hover{transform:translateX(4px);background:rgba(255,255,255,.1);}
+  .dash-stat .ic{width:44px;height:44px;border-radius:12px;flex-shrink:0;background:linear-gradient(140deg,var(--blue-vivid),var(--blue-light));display:flex;align-items:center;justify-content:center;box-shadow:0 10px 20px -8px rgba(46,91,255,.6);}
+  .dash-stat .ic svg{width:20px;height:20px;color:#fff;}
+  .dash-stat strong{font-family:'Clash Display',sans-serif;font-size:26px;font-weight:700;color:#fff;display:block;line-height:1.1;}
+  .dash-stat span{font-size:12px;color:#B9C6E8;font-weight:600;}
+  @media (max-width:640px){ .dash-stats{grid-template-columns:1fr;} .dash-panel{padding:26px 22px;} }
+
+  /* Account banner (reuses the LinkedIn-card banner+avatar motif from the main site) */
+  .acc-card{padding:0;overflow:hidden;}
+  .acc-banner{height:96px;background:linear-gradient(120deg,var(--blue-light),var(--navy-mid));position:relative;overflow:hidden;}
+  .acc-body{padding:0 28px 28px;}
+  /* Mirrors the main site's li-avatar/li-name pattern exactly: the avatar overlaps
+     the banner by precisely half its own height (like li-avatar: -32px on a 64px
+     avatar), then the name/email sit stacked underneath in normal flow — no shared
+     row, no alignment math between two different-height elements, so nothing can
+     drift out of sync the way the previous side-by-side layout did. */
+  .acc-avatar-wrap{margin-top:-38px;margin-bottom:14px;}
+  .acc-name-block{margin-bottom:22px;}
+  .acc-name-block .pname{font-size:18px;font-weight:600;font-family:'Clash Display',sans-serif;}
+  .acc-name-block .pemail{font-size:13px;color:var(--ink-mute);margin-top:4px;}
+
+  @media (max-width:980px){
+    .auth-visual{display:none;}
+    .auth-formside{width:100%;}
+  }
+  @media (max-width:900px){
+    .sidebar{transform:translateX(-100%);}
+    .sidebar.open{transform:translateX(0);}
+    .main-area{margin-left:0;}
+    .hamburger{display:flex;}
+    .topbar{padding:14px 18px;}
+    .content-wrap{padding:20px 18px 60px;}
+    .row-2{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== LOGIN VIEW ===== -->
+<div id="loginView">
+  <div class="auth-shell">
+    <div class="auth-visual">
+      <div class="dots" style="top:36px;left:8%;width:120px;height:80px;"></div>
+      <div class="auth-shard"></div>
+      <div class="auth-visual-inner">
+        <div class="auth-logo">
+          <div class="mark">CV</div>
+          <div><div class="logotxt">CVATS.id</div><div class="tag">Admin Panel</div></div>
+        </div>
+        <h1>Kelola konten yang bikin kandidat <span class="hl">Ready to Work.</span></h1>
+        <p>Tulis dan publikasikan artikel dengan editor selengkap Word — lengkap dengan upload gambar dan preview Google secara langsung.</p>
+        <div class="auth-feature-list">
+          <div class="auth-feature">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+            Editor kaya teks: bold, italic, heading, list, warna
+          </div>
+          <div class="auth-feature">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg></span>
+            Upload &amp; atur gambar langsung di dalam artikel
+          </div>
+          <div class="auth-feature">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></span>
+            Preview tampilan hasil pencarian Google secara real-time
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="auth-formside">
+      <div class="login-box">
+        <h2 id="authTitle">Admin CVATS.id</h2>
+        <p class="sub" id="authSub">Login untuk mengelola artikel.</p>
+
+        <div class="auth-tabs">
+          <div class="auth-tab active" id="tabLogin">Masuk</div>
+          <div class="auth-tab" id="tabRegister">Daftar</div>
+        </div>
+
+        <!-- LOGIN FORM -->
+        <div id="loginForm">
+          <div id="loginMsg"></div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="loginEmail" placeholder="admin@cvats.id">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="loginPassword" placeholder="••••••••">
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;" id="loginBtn">Masuk</button>
+        </div>
+
+        <!-- REGISTER FORM -->
+        <div id="registerForm" style="display:none;">
+          <div id="registerMsg"></div>
+          <div class="field">
+            <label>Nama Lengkap</label>
+            <input type="text" id="regName" placeholder="Nama kamu">
+          </div>
+          <div class="field">
+            <label>Email</label>
+            <input type="email" id="regEmail" placeholder="kamu@email.com">
+          </div>
+          <div class="field">
+            <label>Password</label>
+            <input type="password" id="regPassword" placeholder="Minimal 6 karakter">
+          </div>
+          <div class="field">
+            <label>Konfirmasi Password</label>
+            <input type="password" id="regPasswordConfirm" placeholder="Ulangi password">
+          </div>
+          <button class="btn btn-primary" style="width:100%;justify-content:center;" id="registerBtn">Daftar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ADMIN APP VIEW ===== -->
+<div id="appView" style="display:none;">
+<div class="dashboard-shell">
+
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="mark">CV</div>
+      <div class="txt">
+        <div class="logo">CVATS.id</div>
+        <div class="tag">Admin Panel</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Menu</div>
+      <div class="nav-item active" data-section="dashboard">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"></rect><rect x="14" y="3" width="7" height="5" rx="1.5"></rect><rect x="14" y="12" width="7" height="9" rx="1.5"></rect><rect x="3" y="16" width="7" height="5" rx="1.5"></rect></svg>
+        Dashboard
+      </div>
+      <div class="nav-item" data-section="articles">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"></path><path d="M9 13h6"></path><path d="M9 17h6"></path></svg>
+        Artikel
+      </div>
+      <div class="nav-item" data-section="account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 3.6-7 8-7s8 3 8 7"></path></svg>
+        Akun Saya
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar" id="sidebarAvatar">?</div>
+        <div class="sidebar-user-info">
+          <div class="name" id="sidebarName">Memuat...</div>
+          <div class="role" id="sidebarRole">-</div>
+        </div>
+      </div>
+      <button class="btn btn-ghost btn-sm logout-item" id="logoutBtn">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><path d="M16 17l5-5-5-5"></path><path d="M21 12H9"></path></svg>
+        Keluar
+      </button>
+    </div>
+  </aside>
+
+  <div class="main-area">
+    <div class="topbar">
+      <div class="topbar-left">
+        <div class="hamburger" id="hamburgerBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"></path><path d="M3 12h18"></path><path d="M3 18h18"></path></svg>
+        </div>
+        <div>
+          <h2 id="topbarTitle">Dashboard</h2>
+          <div class="topsub" id="topbarSub">Ringkasan aktivitas artikel kamu</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-wrap">
+      <div id="globalMsg"></div>
+
+      <!-- ===== SECTION: DASHBOARD ===== -->
+      <div class="content-section active" id="section-dashboard">
+        <div class="dash-panel">
+          <div class="dots" style="top:-14px;right:8%;width:140px;height:90px;"></div>
+          <div class="dash-shard"></div>
+          <div class="dash-panel-inner">
+            <span class="eyebrow-light" style="margin-bottom:12px;">Ringkasan</span>
+            <h3>Progres konten kamu sejauh ini</h3>
+            <div class="dash-stats">
+              <div class="dash-stat">
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v4a1 1 0 0 0 1 1h4"></path><path d="M17 21H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7l5 5v11a2 2 0 0 1-2 2Z"></path></svg></span>
+                <div><strong id="statTotal">0</strong><span>Total Artikel</span></div>
+              </div>
+              <div class="dash-stat">
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"/></svg></span>
+                <div><strong id="statPublished">0</strong><span>Published</span></div>
+              </div>
+              <div class="dash-stat">
+                <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg></span>
+                <div><strong id="statDraft">0</strong><span>Draft</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head-row">
+            <div>
+              <span class="eyebrow" style="margin-bottom:8px;">Aktivitas</span>
+              <h3 style="border:none;padding:0;margin-top:8px;">Artikel Terbaru</h3>
+            </div>
+          </div>
+          <div id="recentList"></div>
+        </div>
+      </div>
+
+      <!-- ===== SECTION: ARTIKEL ===== -->
+      <div class="content-section" id="section-articles">
+    <!-- FORM -->
+    <div class="card">
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        Editor Artikel
+      </span>
+      <h3 id="formTitle" style="margin-top:14px;">Tulis Artikel Baru</h3>
+      <input type="hidden" id="articleId">
+
+      <div class="field">
+        <label>Judul Artikel</label>
+        <input type="text" id="fTitle" placeholder="Cara Membuat CV yang Ramah Sistem ATS">
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label>Slug (URL)</label>
+          <input type="text" id="fSlug" placeholder="cara-membuat-cv-ats-friendly">
+          <div class="hint">Otomatis dari judul. Boleh diedit manual, pakai huruf kecil & tanda hubung.</div>
+        </div>
+        <div class="field">
+          <label>Kategori</label>
+          <input type="text" id="fCategory" placeholder="Tips CV">
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Ringkasan (excerpt) — juga dipakai sebagai meta description SEO</label>
+        <textarea id="fExcerpt" rows="2" placeholder="Ringkasan 1-2 kalimat yang menarik orang untuk klik & muncul di hasil pencarian Google."></textarea>
+        <div class="hint" id="excerptCount">0 / 160 karakter (ideal untuk Google)</div>
+      </div>
+
+      <div class="field">
+        <label>Gambar Sampul</label>
+        <div class="cover-drop" id="coverDrop">
+          <input type="file" id="coverFileInput" accept="image/*" hidden>
+          <div class="cover-drop-empty" id="coverDropEmpty">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>
+            <span>Seret gambar ke sini, atau <strong>klik untuk unggah</strong></span>
+            <span class="hint2">JPG, PNG, atau WEBP — maks 5MB</span>
+          </div>
+          <div class="cover-drop-preview" id="coverDropPreview" style="display:none;">
+            <img id="coverPreviewImg" src="" alt="Gambar sampul">
+            <div class="cover-drop-overlay">
+              <button type="button" class="btn btn-ghost-dark btn-sm" id="coverReplaceBtn">Ganti</button>
+              <button type="button" class="btn btn-danger btn-sm" id="coverRemoveBtn">Hapus</button>
+            </div>
+          </div>
+          <div class="cover-drop-uploading" id="coverUploading" style="display:none;"><span class="spinner"></span> Mengunggah...</div>
+        </div>
+        <div id="coverMsg" class="inline-err"></div>
+        <button type="button" class="link-toggle" id="coverUrlToggle">atau tempel URL gambar</button>
+        <input type="text" id="fCover" placeholder="https://..." style="display:none;margin-top:8px;">
+      </div>
+
+      <div class="field">
+        <label>Isi Artikel</label>
+        <div class="editor-shell">
+          <div id="quillEditor"></div>
+        </div>
+        <div class="word-count-row">
+          <span class="hint" id="wordCountHint">0 kata</span>
+        </div>
+      </div>
+
+      <div class="row-2">
+        <div class="field">
+          <label>Estimasi Menit Baca</label>
+          <div style="display:flex;gap:8px;">
+            <input type="number" id="fReadMinutes" value="4" min="1">
+            <button type="button" class="btn btn-outline btn-sm" id="autoReadBtn" style="flex-shrink:0;">Hitung Otomatis</button>
+          </div>
+        </div>
+        <div class="field">
+          <label>Nama Penulis</label>
+          <input type="text" id="fAuthor" placeholder="Tim CVATS.id" value="Tim CVATS.id">
+        </div>
+      </div>
+
+      <div class="seo-panel">
+        <span class="eyebrow-light">SEO Lanjutan</span>
+        <div class="field">
+          <label>Meta Title (kosongkan untuk pakai Judul Artikel di atas)</label>
+          <input type="text" id="fMetaTitle" placeholder="Cara Membuat CV ATS yang Lolos Seleksi Otomatis | CVATS.id">
+        </div>
+        <div class="field" style="margin-bottom:8px;">
+          <label>Kata Kunci Fokus (pisahkan dengan koma)</label>
+          <input type="text" id="fKeywords" placeholder="jasa cv ats, cara membuat cv ats, cv lolos ats">
+        </div>
+
+        <label style="display:block;font-weight:700;font-size:13px;color:#C8D3EE;margin-bottom:6px;">Preview di Google Search</label>
+        <div class="gp-window">
+          <div class="gp-chrome"><span></span><span></span><span></span></div>
+          <div class="seo-preview">
+            <div class="url">cvats.id › artikel-detail.html?slug=<span id="previewSlug">slug-artikel</span></div>
+            <div class="title" id="previewTitle">Judul artikel akan muncul di sini</div>
+            <div class="desc" id="previewDesc">Ringkasan artikel akan muncul di sini sebagai meta description.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="toggle-row">
+        <div>
+          <span>Publikasikan</span>
+          <div class="hint" style="margin-top:2px;">Tampil di halaman publik saat aktif</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;">
+          <span class="badge pub" id="publishStatusBadge">Published</span>
+          <label class="switch">
+            <input type="checkbox" id="fPublished" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <div style="display:flex;gap:10px;margin-top:8px;">
+        <button class="btn btn-primary" id="saveBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+          Simpan Artikel
+        </button>
+        <button class="btn btn-outline" id="resetBtn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 109-9 9.75 9.75 0 00-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+          Bersihkan Form
+        </button>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="card">
+      <div class="card-head-row">
+        <h3 style="border:none;padding:0;margin:0;">Semua Artikel</h3>
+        <span class="count-pill" id="articleCountPill">0 artikel</span>
+      </div>
+      <div id="articleList"></div>
+    </div>
+      </div>
+      <!-- /section-articles -->
+
+      <!-- ===== SECTION: AKUN SAYA ===== -->
+      <div class="content-section" id="section-account">
+        <div class="card acc-card">
+          <div class="acc-banner"><div class="dots" style="top:-10px;right:10%;width:110px;height:80px;"></div></div>
+          <div class="acc-body">
+            <div class="acc-avatar-row">
+              <div class="avatar lg" id="accAvatar">?</div>
+              <div class="name-wrap">
+                <div class="pname" id="accName">Memuat...</div>
+                <div class="pemail" id="accEmail">-</div>
+              </div>
+            </div>
+            <div id="accountMsg"></div>
+            <div class="field">
+              <label>Nama Lengkap</label>
+              <input type="text" id="accFullName" placeholder="Nama kamu">
+            </div>
+            <div class="row-2">
+              <div class="field">
+                <label>Email</label>
+                <input type="email" id="accEmailField" disabled>
+                <div class="hint">Email tidak bisa diubah dari halaman ini.</div>
+              </div>
+              <div class="field">
+                <label>Role</label>
+                <input type="text" id="accRoleField" disabled>
+              </div>
+            </div>
+            <button class="btn btn-primary" id="saveProfileBtn">Simpan Perubahan</button>
+          </div>
+        </div>
+      </div>
+      <!-- /section-account -->
+
+    </div>
+    <!-- /content-wrap -->
+  </div>
+  <!-- /main-area -->
+</div>
+<!-- /dashboard-shell -->
+</div>
+<!-- /appView -->
+
+<script>
+  const SUPABASE_URL = "https://vvpxvfltzcujxgglguou.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_-pk7cQ4qdpXtCXT_ypqKzA_WKIkPEBd";
+  const STORAGE_BUCKET = "article-images"; // pastikan bucket ini sudah dibuat (public) di Supabase Storage
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  const loginView = document.getElementById('loginView');
+  const appView = document.getElementById('appView');
+  const loginMsg = document.getElementById('loginMsg');
+  const globalMsg = document.getElementById('globalMsg');
+
+  function showMsg(el, text, type){
+    el.innerHTML = `<div class="msg ${type}">${text}</div>`;
+    setTimeout(()=>{ el.innerHTML = ''; }, 4000);
+  }
+
+  function esc(str){
+    const d = document.createElement('div');
+    d.textContent = str === null || str === undefined ? '' : String(str);
+    return d.innerHTML;
+  }
+
+  function slugify(text){
+    return text.toString().toLowerCase().trim()
+      .replace(/[^\w\s-]/g,'')
+      .replace(/[\s_]+/g,'-')
+      .replace(/^-+|-+$/g,'');
+  }
+
+  // ===== AUTH =====
+  let currentUser = null;
+
+  async function checkSession(){
+    const { data } = await supabaseClient.auth.getSession();
+    if(data.session){
+      currentUser = data.session.user;
+      loginView.style.display = 'none';
+      appView.style.display = 'block';
+      loadProfile();
+      loadArticles();
+    } else {
+      currentUser = null;
+      loginView.style.display = 'block';
+      appView.style.display = 'none';
+    }
+  }
+
+  document.getElementById('loginBtn').addEventListener('click', async ()=>{
+    const email = document.getElementById('loginEmail').value.trim();
+    const password = document.getElementById('loginPassword').value;
+    if(!email || !password){
+      showMsg(loginMsg, 'Isi email & password dulu.', 'err');
+      return;
+    }
+    const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+    if(error){
+      showMsg(loginMsg, 'Login gagal: ' + error.message, 'err');
+      return;
+    }
+    checkSession();
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', async ()=>{
+    await supabaseClient.auth.signOut();
+    checkSession();
+  });
+
+  checkSession();
+
+  // ===== AUTH TABS (Masuk / Daftar) =====
+  const tabLogin = document.getElementById('tabLogin');
+  const tabRegister = document.getElementById('tabRegister');
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const authTitle = document.getElementById('authTitle');
+  const authSub = document.getElementById('authSub');
+
+  tabLogin.addEventListener('click', ()=>{
+    tabLogin.classList.add('active');
+    tabRegister.classList.remove('active');
+    loginForm.style.display = 'block';
+    registerForm.style.display = 'none';
+    authTitle.textContent = 'Admin CVATS.id';
+    authSub.textContent = 'Login untuk mengelola artikel.';
+  });
+
+  tabRegister.addEventListener('click', ()=>{
+    tabRegister.classList.add('active');
+    tabLogin.classList.remove('active');
+    registerForm.style.display = 'block';
+    loginForm.style.display = 'none';
+    authTitle.textContent = 'Buat Akun Baru';
+    authSub.textContent = 'Daftar untuk mendapat akses ke Admin CVATS.id.';
+  });
+
+  // ===== REGISTER (SIGN UP) =====
+  const registerMsg = document.getElementById('registerMsg');
+
+  document.getElementById('registerBtn').addEventListener('click', async ()=>{
+    const name = document.getElementById('regName').value.trim();
+    const email = document.getElementById('regEmail').value.trim();
+    const password = document.getElementById('regPassword').value;
+    const passwordConfirm = document.getElementById('regPasswordConfirm').value;
+
+    if(!name || !email || !password || !passwordConfirm){
+      showMsg(registerMsg, 'Lengkapi semua kolom dulu.', 'err');
+      return;
+    }
+    if(password.length < 6){
+      showMsg(registerMsg, 'Password minimal 6 karakter.', 'err');
+      return;
+    }
+    if(password !== passwordConfirm){
+      showMsg(registerMsg, 'Konfirmasi password tidak cocok.', 'err');
+      return;
+    }
+
+    const { data, error } = await supabaseClient.auth.signUp({
+      email,
+      password,
+      options: { data: { full_name: name } }
+    });
+
+    if(error){
+      showMsg(registerMsg, 'Daftar gagal: ' + error.message, 'err');
+      return;
+    }
+
+    if(data.session){
+      showMsg(registerMsg, 'Akun berhasil dibuat! Mengarahkan ke dashboard...', 'ok');
+      setTimeout(checkSession, 800);
+    } else {
+      showMsg(registerMsg, 'Akun dibuat. Cek email kamu untuk konfirmasi, lalu login.', 'ok');
+      setTimeout(()=>{ tabLogin.click(); }, 1500);
+    }
+  });
+
+  // ===== SIDEBAR NAVIGATION (Dashboard / Artikel / Akun Saya) =====
+  const navItems = document.querySelectorAll('.nav-item');
+  const sectionTitles = {
+    dashboard: ['Dashboard', 'Ringkasan aktivitas artikel kamu'],
+    articles: ['Artikel', 'Kelola tulisan yang tampil di situs'],
+    account: ['Akun Saya', 'Profil dan info login kamu']
+  };
+
+  function showSection(name){
+    document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+    document.getElementById('section-' + name).classList.add('active');
+    navItems.forEach(n => n.classList.toggle('active', n.dataset.section === name));
+    document.getElementById('topbarTitle').textContent = sectionTitles[name][0];
+    document.getElementById('topbarSub').textContent = sectionTitles[name][1];
+    closeSidebar();
+  }
+
+  navItems.forEach(item=>{
+    item.addEventListener('click', ()=> showSection(item.dataset.section));
+  });
+
+  // ===== MOBILE SIDEBAR TOGGLE =====
+  const sidebar = document.getElementById('sidebar');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+  function openSidebar(){
+    sidebar.classList.add('open');
+    sidebarOverlay.classList.add('show');
+  }
+  function closeSidebar(){
+    sidebar.classList.remove('open');
+    sidebarOverlay.classList.remove('show');
+  }
+  document.getElementById('hamburgerBtn').addEventListener('click', openSidebar);
+  sidebarOverlay.addEventListener('click', closeSidebar);
+
+  // ===== PROFILE (tabel profiles) =====
+  function initials(name, email){
+    const base = (name && name.trim()) ? name.trim() : (email || '?');
+    return base.split(' ').map(w=>w[0]).join('').slice(0,2).toUpperCase();
+  }
+
+  async function loadProfile(){
+    if(!currentUser) return;
+    const { data, error } = await supabaseClient
+      .from('profiles')
+      .select('*')
+      .eq('id', currentUser.id)
+      .single();
+
+    const name = (!error && data) ? (data.full_name || '') : '';
+    const email = currentUser.email || '';
+    const role = (!error && data) ? (data.role || 'editor') : 'editor';
+
+    const initialsTxt = initials(name, email);
+    document.getElementById('sidebarAvatar').textContent = initialsTxt;
+    document.getElementById('sidebarName').textContent = name || email;
+    document.getElementById('sidebarRole').textContent = role;
+
+    document.getElementById('accAvatar').textContent = initialsTxt;
+    document.getElementById('accName').textContent = name || '(Belum ada nama)';
+    document.getElementById('accEmail').textContent = email;
+    document.getElementById('accFullName').value = name;
+    document.getElementById('accEmailField').value = email;
+    document.getElementById('accRoleField').value = role;
+  }
+
+  document.getElementById('saveProfileBtn').addEventListener('click', async ()=>{
+    if(!currentUser) return;
+    const fullName = document.getElementById('accFullName').value.trim();
+    const accountMsg = document.getElementById('accountMsg');
+
+    const { error } = await supabaseClient
+      .from('profiles')
+      .update({ full_name: fullName })
+      .eq('id', currentUser.id);
+
+    if(error){
+      showMsg(accountMsg, 'Gagal menyimpan profil: ' + error.message, 'err');
+      return;
+    }
+    showMsg(accountMsg, 'Profil berhasil diperbarui.', 'ok');
+    loadProfile();
+  });
+
+  // ===== STORAGE UPLOAD HELPER =====
+  async function uploadToStorage(file, folder){
+    if(!file) throw new Error('File tidak ditemukan.');
+    if(!file.type || !file.type.startsWith('image/')) throw new Error('File harus berupa gambar.');
+    if(file.size > 5 * 1024 * 1024) throw new Error('Ukuran gambar maksimal 5MB.');
+    const ext = (file.name.split('.').pop() || 'jpg').toLowerCase().replace(/[^a-z0-9]/g,'') || 'jpg';
+    const fileName = `${folder}/${Date.now()}-${Math.random().toString(36).slice(2,8)}.${ext}`;
+    const { error: upErr } = await supabaseClient.storage.from(STORAGE_BUCKET).upload(fileName, file, { cacheControl:'3600', upsert:false });
+    if(upErr) throw upErr;
+    const { data } = supabaseClient.storage.from(STORAGE_BUCKET).getPublicUrl(fileName);
+    return data.publicUrl;
+  }
+
+  // ===== COVER IMAGE DROPZONE =====
+  const coverDrop = document.getElementById('coverDrop');
+  const coverFileInput = document.getElementById('coverFileInput');
+  const coverDropEmpty = document.getElementById('coverDropEmpty');
+  const coverDropPreview = document.getElementById('coverDropPreview');
+  const coverPreviewImg = document.getElementById('coverPreviewImg');
+  const coverUploading = document.getElementById('coverUploading');
+  const coverMsg = document.getElementById('coverMsg');
+  const fCover = document.getElementById('fCover');
+
+  function setCoverPreview(url){
+    if(url){
+      coverPreviewImg.src = url;
+      coverDropEmpty.style.display = 'none';
+      coverDropPreview.style.display = 'block';
+    } else {
+      coverPreviewImg.src = '';
+      coverDropEmpty.style.display = 'flex';
+      coverDropPreview.style.display = 'none';
+    }
+    fCover.value = url || '';
+  }
+
+  async function handleCoverFile(file){
+    coverMsg.textContent = '';
+    coverDropEmpty.style.display = 'none';
+    coverDropPreview.style.display = 'none';
+    coverUploading.style.display = 'flex';
+    try{
+      const url = await uploadToStorage(file, 'cover');
+      setCoverPreview(url);
+    }catch(err){
+      coverMsg.textContent = 'Gagal unggah: ' + err.message;
+      setCoverPreview(fCover.value || null);
+    }finally{
+      coverUploading.style.display = 'none';
+    }
+  }
+
+  coverDrop.addEventListener('click', ()=>{
+    if(coverDropPreview.style.display === 'block') return;
+    coverFileInput.click();
+  });
+  coverFileInput.addEventListener('change', ()=>{
+    const file = coverFileInput.files[0];
+    if(file) handleCoverFile(file);
+    coverFileInput.value = '';
+  });
+  ['dragover','dragenter'].forEach(evt => coverDrop.addEventListener(evt, (e)=>{ e.preventDefault(); coverDrop.classList.add('dragover'); }));
+  ['dragleave'].forEach(evt => coverDrop.addEventListener(evt, (e)=>{ e.preventDefault(); coverDrop.classList.remove('dragover'); }));
+  coverDrop.addEventListener('drop', (e)=>{
+    e.preventDefault();
+    coverDrop.classList.remove('dragover');
+    const file = e.dataTransfer.files && e.dataTransfer.files[0];
+    if(file) handleCoverFile(file);
+  });
+  document.getElementById('coverReplaceBtn').addEventListener('click', (e)=>{ e.stopPropagation(); coverFileInput.click(); });
+  document.getElementById('coverRemoveBtn').addEventListener('click', (e)=>{ e.stopPropagation(); setCoverPreview(null); });
+  document.getElementById('coverUrlToggle').addEventListener('click', ()=>{
+    fCover.style.display = fCover.style.display === 'none' ? 'block' : 'none';
+  });
+  fCover.addEventListener('input', ()=>{ if(fCover.value) setCoverPreview(fCover.value); });
+
+  // ===== RICH TEXT EDITOR (Quill) =====
+  let quill;
+  function initEditor(){
+    try{
+      if(window.QuillBlotFormatter){
+        Quill.register('modules/blotFormatter', window.QuillBlotFormatter.default || window.QuillBlotFormatter);
+      }
+    }catch(e){ /* blot formatter opsional; editor tetap jalan tanpa resize gambar */ }
+
+    quill = new Quill('#quillEditor', {
+      theme: 'snow',
+      placeholder: 'Tulis isi artikel di sini...',
+      modules: {
+        toolbar: {
+          container: [
+            [{ header: [2, 3, 4, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ color: [] }, { background: [] }],
+            [{ align: [] }],
+            [{ list: 'ordered' }, { list: 'bullet' }, { indent: '-1' }, { indent: '+1' }],
+            ['blockquote', 'code-block', 'link', 'image'],
+            ['clean']
+          ],
+          handlers: { image: imageHandler }
+        },
+        blotFormatter: {}
+      }
+    });
+
+    quill.root.addEventListener('drop', handleEditorDrop);
+    quill.root.addEventListener('paste', handleEditorPaste);
+    quill.on('text-change', updateWordCount);
+    updateWordCount();
+  }
+
+  function updateWordCount(){
+    const text = quill.getText().trim();
+    const words = text ? text.split(/\s+/).length : 0;
+    document.getElementById('wordCountHint').textContent = `${words} kata`;
+  }
+
+  function imageHandler(){
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'image/*';
+    input.onchange = async ()=>{
+      const file = input.files[0];
+      if(file) await insertEditorImage(file);
+    };
+    input.click();
+  }
+
+  async function insertEditorImage(file){
+    const range = quill.getSelection(true) || { index: quill.getLength() };
+    const placeholderText = 'Mengunggah gambar...';
+    quill.insertText(range.index, placeholderText, { italic: true });
+    quill.setSelection(range.index + placeholderText.length);
+    try{
+      const url = await uploadToStorage(file, 'content');
+      quill.deleteText(range.index, placeholderText.length);
+      quill.insertEmbed(range.index, 'image', url, 'user');
+      quill.setSelection(range.index + 1);
+    }catch(err){
+      quill.deleteText(range.index, placeholderText.length);
+      showMsg(globalMsg, 'Gagal unggah gambar: ' + err.message, 'err');
+    }
+  }
+
+  function handleEditorDrop(e){
+    const file = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0];
+    if(file && file.type && file.type.startsWith('image/')){
+      e.preventDefault();
+      e.stopPropagation();
+      insertEditorImage(file);
+    }
+  }
+
+  function handleEditorPaste(e){
+    const items = e.clipboardData && e.clipboardData.items;
+    if(!items) return;
+    for(const item of items){
+      if(item.type && item.type.startsWith('image/')){
+        const file = item.getAsFile();
+        if(file){
+          e.preventDefault();
+          insertEditorImage(file);
+          return;
+        }
+      }
+    }
+  }
+
+  window.addEventListener('DOMContentLoaded', initEditor);
+
+  // Fallback ringan untuk konten artikel lama yang masih berformat Markdown,
+  // supaya tetap bisa dibuka & diedit di editor baru ini.
+  function legacyMarkdownToHtml(md){
+    if(!md) return '';
+    let html = md
+      .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+      .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+      .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+      .replace(/^# (.*$)/gim, '<h1>$1</h1>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>');
+    html = html.replace(/(^|\n)((?:- .*(?:\n|$))+)/g, (m, pre, block)=>{
+      const items = block.trim().split('\n').map(l => `<li>${l.replace(/^- /, '')}</li>`).join('');
+      return `${pre}<ul>${items}</ul>`;
+    });
+    html = html.split(/\n{2,}/).map(chunk=>{
+      const t = chunk.trim();
+      if(!t) return '';
+      if(/^<(h\d|ul|ol|blockquote)/.test(t)) return t;
+      return `<p>${t.replace(/\n/g, '<br>')}</p>`;
+    }).join('');
+    return html;
+  }
+
+  // ===== FORM AUTO-SLUG & SEO PREVIEW =====
+  const fTitle = document.getElementById('fTitle');
+  const fSlug = document.getElementById('fSlug');
+  const fExcerpt = document.getElementById('fExcerpt');
+  const fMetaTitle = document.getElementById('fMetaTitle');
+  let slugManuallyEdited = false;
+
+  fSlug.addEventListener('input', ()=>{ slugManuallyEdited = true; });
+  fTitle.addEventListener('input', ()=>{
+    if(!slugManuallyEdited){ fSlug.value = slugify(fTitle.value); }
+    updatePreview();
+  });
+  fSlug.addEventListener('input', updatePreview);
+  fExcerpt.addEventListener('input', ()=>{
+    document.getElementById('excerptCount').textContent = `${fExcerpt.value.length} / 160 karakter (ideal untuk Google)`;
+    updatePreview();
+  });
+  fMetaTitle.addEventListener('input', updatePreview);
+
+  function updatePreview(){
+    document.getElementById('previewSlug').textContent = fSlug.value || 'slug-artikel';
+    document.getElementById('previewTitle').textContent = (fMetaTitle.value || fTitle.value || 'Judul artikel akan muncul di sini') + ' | CVATS.id';
+    document.getElementById('previewDesc').textContent = fExcerpt.value || 'Ringkasan artikel akan muncul di sini sebagai meta description.';
+  }
+
+  // ===== PUBLISH BADGE =====
+  function updatePublishBadge(){
+    const badge = document.getElementById('publishStatusBadge');
+    const checked = document.getElementById('fPublished').checked;
+    badge.textContent = checked ? 'Published' : 'Draft';
+    badge.className = 'badge ' + (checked ? 'pub' : 'draft');
+  }
+  document.getElementById('fPublished').addEventListener('change', updatePublishBadge);
+
+  // ===== AUTO READ TIME =====
+  document.getElementById('autoReadBtn').addEventListener('click', ()=>{
+    const text = quill.getText().trim();
+    const words = text ? text.split(/\s+/).length : 0;
+    const minutes = Math.max(1, Math.ceil(words / 200));
+    document.getElementById('fReadMinutes').value = minutes;
+  });
+
+  // ===== RESET FORM =====
+  function resetForm(){
+    document.getElementById('articleId').value = '';
+    document.getElementById('formTitle').textContent = 'Tulis Artikel Baru';
+    fTitle.value = '';
+    fSlug.value = '';
+    slugManuallyEdited = false;
+    fExcerpt.value = '';
+    document.getElementById('excerptCount').textContent = '0 / 160 karakter (ideal untuk Google)';
+    if(quill) quill.setText('');
+    setCoverPreview(null);
+    fCover.style.display = 'none';
+    coverMsg.textContent = '';
+    document.getElementById('fReadMinutes').value = 4;
+    document.getElementById('fAuthor').value = 'Tim CVATS.id';
+    document.getElementById('fCategory').value = '';
+    fMetaTitle.value = '';
+    document.getElementById('fKeywords').value = '';
+    document.getElementById('fPublished').checked = true;
+    updatePublishBadge();
+    updatePreview();
+  }
+  document.getElementById('resetBtn').addEventListener('click', resetForm);
+
+  // ===== SAVE (insert or update) =====
+  document.getElementById('saveBtn').addEventListener('click', async ()=>{
+    const id = document.getElementById('articleId').value;
+    const plainText = quill ? quill.getText().trim() : '';
+    const payload = {
+      title: fTitle.value.trim(),
+      slug: fSlug.value.trim(),
+      excerpt: fExcerpt.value.trim(),
+      content: quill ? quill.root.innerHTML : '',
+      cover_image_url: fCover.value.trim() || null,
+      read_minutes: parseInt(document.getElementById('fReadMinutes').value) || 4,
+      author: document.getElementById('fAuthor').value.trim() || 'Tim CVATS.id',
+      category: document.getElementById('fCategory').value.trim() || 'Tips Karier',
+      meta_title: fMetaTitle.value.trim() || null,
+      meta_keywords: document.getElementById('fKeywords').value.trim() || null,
+      published: document.getElementById('fPublished').checked
+    };
+
+    if(!payload.title || !payload.slug || !plainText){
+      showMsg(globalMsg, 'Judul, slug, dan isi artikel wajib diisi.', 'err');
+      return;
+    }
+
+    let error;
+    if(id){
+      ({ error } = await supabaseClient.from('articles').update(payload).eq('id', id));
+    } else {
+      ({ error } = await supabaseClient.from('articles').insert(payload));
+    }
+
+    if(error){
+      showMsg(globalMsg, 'Gagal menyimpan: ' + error.message, 'err');
+      return;
+    }
+    showMsg(globalMsg, 'Artikel berhasil disimpan.', 'ok');
+    resetForm();
+    loadArticles();
+  });
+
+  // ===== LOAD LIST =====
+  function articleRowHtml(a){
+    const thumb = a.cover_image_url
+      ? `<img src="${esc(a.cover_image_url)}" alt="">`
+      : `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg>`;
+    return `
+      <div class="article-row">
+        <div class="article-row-thumb">${thumb}</div>
+        <div class="article-row-info">
+          <h4>${esc(a.title)}</h4>
+          <div class="meta">
+            <span class="badge ${a.published ? 'pub' : 'draft'}">${a.published ? 'Published' : 'Draft'}</span>
+            <span class="cat-pill">${esc(a.category || '-')}</span>
+            <span>${new Date(a.created_at).toLocaleDateString('id-ID')}</span>
+          </div>
+        </div>
+        <div class="article-row-actions">
+          <button class="btn btn-outline btn-sm" data-edit="${a.id}">Edit</button>
+          <button class="btn btn-danger btn-sm" data-delete="${a.id}">Hapus</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function bindRowActions(container, data){
+    container.querySelectorAll('[data-edit]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{ editArticle(btn.dataset.edit, data); showSection('articles'); });
+    });
+    container.querySelectorAll('[data-delete]').forEach(btn=>{
+      btn.addEventListener('click', ()=> deleteArticle(btn.dataset.delete));
+    });
+  }
+
+  function updateDashboard(data){
+    const total = data.length;
+    const published = data.filter(a => a.published).length;
+    const draft = total - published;
+    document.getElementById('statTotal').textContent = total;
+    document.getElementById('statPublished').textContent = published;
+    document.getElementById('statDraft').textContent = draft;
+    document.getElementById('articleCountPill').textContent = `${total} artikel`;
+
+    const recentList = document.getElementById('recentList');
+    if(total === 0){
+      recentList.innerHTML = `<p class="empty">Belum ada artikel. Tulis artikel pertama kamu di menu Artikel.</p>`;
+      return;
+    }
+    const recent = data.slice(0, 5);
+    recentList.innerHTML = recent.map(articleRowHtml).join('');
+    bindRowActions(recentList, data);
+  }
+
+  async function loadArticles(){
+    const list = document.getElementById('articleList');
+    const { data, error } = await supabaseClient
+      .from('articles')
+      .select('*')
+      .order('created_at', { ascending:false });
+
+    if(error){
+      list.innerHTML = `<div class="msg err">Gagal memuat: ${error.message}</div>`;
+      return;
+    }
+    if(!data || data.length === 0){
+      list.innerHTML = `<p class="empty">Belum ada artikel. Tulis artikel pertama kamu di atas.</p>`;
+      updateDashboard([]);
+      return;
+    }
+
+    list.innerHTML = data.map(articleRowHtml).join('');
+    bindRowActions(list, data);
+    updateDashboard(data);
+  }
+
+  function editArticle(id, data){
+    const a = data.find(x => x.id === id);
+    if(!a) return;
+    document.getElementById('articleId').value = a.id;
+    document.getElementById('formTitle').textContent = 'Edit Artikel';
+    fTitle.value = a.title;
+    fSlug.value = a.slug;
+    slugManuallyEdited = true;
+    fExcerpt.value = a.excerpt || '';
+    document.getElementById('excerptCount').textContent = `${(a.excerpt||'').length} / 160 karakter (ideal untuk Google)`;
+
+    if(quill){
+      quill.setText('');
+      const raw = a.content || '';
+      const isHtml = /<\/?[a-z][\s\S]*>/i.test(raw);
+      quill.clipboard.dangerouslyPasteHTML(isHtml ? raw : legacyMarkdownToHtml(raw));
+      updateWordCount();
+    }
+
+    setCoverPreview(a.cover_image_url || null);
+    document.getElementById('fReadMinutes').value = a.read_minutes || 4;
+    document.getElementById('fAuthor').value = a.author || 'Tim CVATS.id';
+    document.getElementById('fCategory').value = a.category || '';
+    fMetaTitle.value = a.meta_title || '';
+    document.getElementById('fKeywords').value = a.meta_keywords || '';
+    document.getElementById('fPublished').checked = a.published;
+    updatePublishBadge();
+    updatePreview();
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+
+  async function deleteArticle(id){
+    if(!confirm('Yakin mau hapus artikel ini? Tindakan ini tidak bisa dibatalkan.')) return;
+    const { error } = await supabaseClient.from('articles').delete().eq('id', id);
+    if(error){
+      showMsg(globalMsg, 'Gagal menghapus: ' + error.message, 'err');
+      return;
+    }
+    showMsg(globalMsg, 'Artikel dihapus.', 'ok');
+    loadArticles();
+  }
+</script>
+
+</body>
+</html>

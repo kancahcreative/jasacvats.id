@@ -1967,9 +1967,9 @@ document.querySelectorAll('a[href^="/"]').forEach(link=>{
     e.preventDefault();
     if(navLinks.classList.contains('open')) closeMobileNav();
     lockScrollSpy();
-    scrollToId(hash);
+    scrollToId(hash, false, true); // skip pushState internal, biar gak bentrok
     setActiveNavLink(hash);
-    history.pushState(null, '', path); // biar address bar tetap /detail-paket
+    history.pushState(null, '', path); // ini yang jadi sumber kebenaran URL
   });
 });
 
@@ -2039,7 +2039,7 @@ window.addEventListener('load', handleInitialPath);
     clearTimeout(scrollLockTimer);
   }
 
-  function scrollToId(id, instant){
+ function scrollToId(id, instant, skipPushState){
     const target = document.querySelector(id);
     if(!target) return;
     const behavior = instant ? 'auto' : 'smooth';
@@ -2059,8 +2059,8 @@ window.addEventListener('load', handleInitialPath);
     if (forceTopAlign.includes(id)) {
       const targetRect = target.getBoundingClientRect();
       const y = targetRect.top + window.pageYOffset - headerH - smallGap;
-      window.scrollTo({ top: Math.max(y, 0), behavior: behavior });
-      history.pushState(null, '', id);
+     window.scrollTo({ top: Math.max(y, 0), behavior: behavior });
+      if(!skipPushState) history.pushState(null, '', id);
       return;
     }
 
@@ -2076,8 +2076,8 @@ window.addEventListener('load', handleInitialPath);
       y = targetRect.top + window.pageYOffset - headerH - smallGap;
     }
 
-    window.scrollTo({ top: Math.max(y, 0), behavior: behavior });
-    history.pushState(null, '', id);
+  window.scrollTo({ top: Math.max(y, 0), behavior: behavior });
+    if(!skipPushState) history.pushState(null, '', id);
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(link=>{
@@ -2127,11 +2127,11 @@ const navSectionIds = navAnchorLinks
     if(!hash || hash.length < 2) return;
     const target = document.querySelector(hash);
     if(!target) return;
-    requestAnimationFrame(()=>{
-      lockScrollSpy();
-      scrollToId(hash, true);
-      setActiveNavLink(hash);
-    });
+   requestAnimationFrame(()=>{
+    lockScrollSpy();
+    scrollToId(hash, true, true); // skip pushState — URL udah bener dari refresh
+    setActiveNavLink(hash);
+  });
   }
   window.addEventListener('load', handleInitialHash);
 

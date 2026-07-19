@@ -1,0 +1,11 @@
+{
+  "name": "jasacvats",
+  "compatibility_date": "2026-07-19",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": ".",
+    "html_handling": "none",
+    "not_found_handling": "single-page-application"
+  },
+  "compatibility_flags": ["nodejs_compat"]
+}

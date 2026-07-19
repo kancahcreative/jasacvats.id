@@ -325,13 +325,22 @@
   }
 
   function getSlug(){
-    const params = new URLSearchParams(window.location.search);
-    return params.get('slug');
-  }
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('slug')) return params.get('slug');
+  const parts = window.location.pathname.split('/').filter(Boolean);
+  return parts[parts.length - 1] || null;
+}
 
   function renderArticle(a){
     document.getElementById('pageTitle').textContent = `${a.title} | CVATS.id`;
     document.getElementById('pageDesc').setAttribute('content', a.excerpt || a.title);
+ let canonical = document.querySelector('link[rel="canonical"]');
+    if (!canonical) {
+      canonical = document.createElement('link');
+      canonical.rel = 'canonical';
+      document.head.appendChild(canonical);
+    }
+    canonical.href = `https://cvats.id/${a.slug}`;
 
     const coverHtml = a.cover_image_url
       ? `<img class="article-cover" src="${a.cover_image_url}" alt="${a.title}">`

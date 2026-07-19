@@ -1,13 +1,7 @@
-# 1. Amankan rute statis agar mengarah ke file HTML aslinya
 /beranda         /index.html           200
 /tentang-kami    /index.html           200
 /detail-paket    /index.html           200
 /paket-harga     /index.html           200
 /faq             /index.html           200
 /artikel         /artikel.html         200
-
-# 2. Amankan aset agar tidak ikut ter-redirect ke halaman detail
-/assets/*        /assets/:splat        200
-
-# 3. Jaring terakhir: jika rute tidak terdaftar di atas, lempar ke detail artikel
-/*               /artikel-detail.html  200
+/:slug           /artikel-detail.html  200

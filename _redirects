@@ -1,7 +1,6 @@
-/index.html             /index.html             200
 /admin.html             /admin.html             200
-/artikel.html           /artikel.html           200
-/artikel-detail.html    /artikel-detail.html    200
-/assets/*               /assets/:splat          200
-/favicon.ico            /favicon.ico            200
-/:slug                  /artikel-detail         200
+/artikel.html           /artikel.html            200
+/artikel-detail.html    /artikel-detail.html     200
+/assets/*               /assets/:splat           200
+/favicon.ico            /favicon.ico             200
+/:slug                  /artikel-detail.html     200

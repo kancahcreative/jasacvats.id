@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Artikel & Tips Karier | CVATS.id</title>
+<meta name="description" content="Kumpulan artikel tips CV ATS, surat lamaran, dan LinkedIn dari CVATS.id.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://cvats.id/artikel">
+
+<link rel="icon" type="image/png" href="assets/logos/favicon.png">
+
+<link rel="preconnect" href="https://api.fontshare.com">
+<link rel="preconnect" href="https://cdn.fontshare.com" crossorigin>
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600,700&f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<style>
+  :root{
+    --navy-deep:#0A1A3D;
+    --navy:#152C5E;
+    --navy-mid:#1E3A8A;
+    --blue-vivid:#2E5BFF;
+    --blue-vivid-dark:#1E45E0;
+    --blue-light:#7AA2FF;
+    --blue-pale:#C9D7FF;
+    --sky-soft:#EEF3FF;
+    --bg:#F4F7FE;
+    --line:#E2E8F4;
+    --ink:#0A1A3D;
+    --ink-soft:#4B5675;
+    --ink-mute:#7A86A3;
+    --white:#FFFFFF;
+    --shadow-sm:0 6px 20px -8px rgba(10,26,61,.12);
+    --shadow-md:0 18px 40px -16px rgba(10,26,61,.18);
+    --shadow-lg:0 30px 60px -22px rgba(10,26,61,.28);
+    --radius-xl:28px;
+    --radius-lg:20px;
+    --radius-md:14px;
+    --radius-sm:10px;
+    --maxw:1200px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:auto;}
+  body{
+    margin:0;
+    color:var(--ink);
+    font-family:'Satoshi',-apple-system,BlinkMacSystemFont,sans-serif;
+    font-weight:500;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    background:var(--bg);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Clash Display',sans-serif;
+    margin:0;
+    color:var(--ink);
+    font-weight:600;
+    letter-spacing:-.01em;
+    line-height:1.1;
+  }
+  p{margin:0;}
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;margin:0;padding:0;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;}
+  :focus-visible{outline:2.5px solid var(--blue-vivid);outline-offset:3px;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;position:relative;}
+  .section{padding:88px 0;}
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:6px;
+    font-family:'Satoshi',sans-serif;font-weight:700;font-size:13px;letter-spacing:.01em;
+    color:var(--navy);
+    background:var(--sky-soft);
+    padding:7px 14px;border-radius:100px;
+  }
+
+  .section-head{max-width:680px;margin:0 0 48px;}
+  .section-head.center{margin-inline:auto;text-align:center;}
+  .section-head .lede{color:var(--ink-soft);font-size:17px;margin-top:16px;line-height:1.55;font-weight:500;}
+  .section-head h2{font-size:clamp(32px,4vw,46px);}
+
+  .js-enhanced .reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease, transform .6s ease;}
+  .js-enhanced .reveal.in-view{opacity:1;transform:none;}
+  @media (prefers-reduced-motion: reduce){ .js-enhanced .reveal{opacity:1;transform:none;transition:none;} }
+
+  .dots{
+    position:absolute;pointer-events:none;
+    background-image:radial-gradient(rgba(255,255,255,.15) 1.4px, transparent 1.4px);
+    background-size:14px 14px;
+  }
+
+  /* ===== HEADER (sama persis dengan index.html) ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,255,255,.85);
+    backdrop-filter:blur(14px) saturate(1.4);
+    -webkit-backdrop-filter:blur(14px) saturate(1.4);
+    border-bottom:1px solid transparent;
+    transition:border-color .25s, box-shadow .25s;
+  }
+  header.scrolled{border-color:var(--line);box-shadow:0 4px 18px -10px rgba(10,26,61,.1);}
+  .nav{position:relative;display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--maxw);margin:0 auto;gap:24px;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Clash Display',sans-serif;font-weight:700;font-size:20px;color:var(--ink);}
+  .logo img{height:42px;width:auto;display:block;}
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a{font-size:15px;font-weight:700;color:var(--ink-soft);transition:color .2s;}
+  .nav-links a:hover{color:var(--ink);}
+  .nav-links a.active{color:var(--blue-vivid);font-weight:800;}
+  .nav-right{display:flex;align-items:center;gap:10px;}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    font-weight:700;font-size:15px;border-radius:100px;border:none;
+    padding:13px 24px;transition:transform .18s, box-shadow .18s, background .18s, color .18s, border-color .18s;
+    white-space:nowrap;font-family:'Satoshi',sans-serif;cursor:pointer;
+  }
+  .btn-primary{background:var(--blue-vivid);color:#fff;box-shadow:0 8px 20px -8px rgba(46,91,255,.55);}
+  .btn-primary:hover{background:var(--blue-vivid-dark);transform:translateY(-1px);}
+  .btn-ghost{background:#fff;color:var(--ink);border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--navy);background:var(--sky-soft);}
+  .btn-sm{padding:10px 18px;font-size:14px;}
+  .nav-toggle{display:none;background:none;padding:6px;}
+  .nav-toggle svg{width:22px;height:22px;color:var(--ink);}
+  .nav-links-cta{display:none;}
+  .nav-links a.nav-links-cta{color:#fff;}
+
+  @media (min-width:981px){
+    .nav{display:flex;align-items:center;gap:0;}
+    .logo{margin-right:auto;flex-shrink:0;}
+    .nav-links{display:flex;align-items:center;gap:40px;margin-left:0;}
+    .nav-right{display:flex;align-items:center;margin-left:32px;}
+  }
+
+  /* ===== PAGE HERO (varian dari .hero index.html, dipendekkan) ===== */
+  .page-hero{
+    background:linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 55%, var(--navy-mid) 100%);
+    color:#fff;padding:64px 0 56px;text-align:center;
+    position:relative;overflow:hidden;isolation:isolate;
+  }
+  .page-hero::before,.page-hero::after{
+    content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(90px);z-index:0;
+  }
+  .page-hero::before{top:-180px;right:-160px;width:560px;height:560px;background:rgba(122,162,255,.4);}
+  .page-hero::after{bottom:-200px;left:-140px;width:520px;height:520px;background:rgba(255,255,255,.12);}
+  .page-hero .wrap{position:relative;z-index:1;}
+  .hero-eyebrow{
+    display:inline-block;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);
+    color:#fff;padding:8px 18px;border-radius:100px;
+    font-family:'Clash Display',sans-serif;font-weight:600;font-size:14px;margin-bottom:18px;
+  }
+  .page-hero h1{font-size:clamp(30px,4.4vw,46px);color:#fff;}
+  .page-hero p.lede{color:#C8D3EE;font-size:16px;max-width:520px;margin:14px auto 0;line-height:1.55;}
+
+  /* ===== ARTICLE CARDS ===== */
+  .article-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  .article-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+    overflow:hidden;box-shadow:var(--shadow-sm);transition:transform .2s, box-shadow .2s;
+    display:flex;flex-direction:column;
+  }
+  .article-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-md);}
+  .article-cover{width:100%;aspect-ratio:16/10;object-fit:cover;background:var(--sky-soft);}
+  .article-body{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1;}
+  .article-cat{display:inline-flex;font-size:11.5px;font-weight:700;color:var(--navy);background:var(--sky-soft);padding:5px 12px;border-radius:100px;width:fit-content;margin-bottom:12px;}
+  .article-title{font-size:19px;font-weight:600;line-height:1.3;margin-bottom:10px;color:var(--ink);}
+  .article-excerpt{font-size:14px;color:var(--ink-soft);line-height:1.6;flex:1;}
+  .article-meta{display:flex;justify-content:space-between;align-items:center;margin-top:18px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-mute);}
+
+  .state-msg{text-align:center;color:var(--ink-soft);font-size:15px;padding:60px 0;grid-column:1/-1;}
+
+  /* ===== FOOTER (sama persis dengan index.html) ===== */
+  footer{padding:64px 0 32px;}
+  .foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:36px;}
+  .foot-brand p{color:var(--ink-soft);font-size:14.5px;margin-top:12px;max-width:300px;line-height:1.55;}
+  .foot-cols{display:flex;gap:64px;flex-wrap:wrap;}
+  .foot-col h4{font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink);margin-bottom:14px;font-family:'Satoshi',sans-serif;}
+  .foot-col ul{display:flex;flex-direction:column;gap:10px;}
+  .foot-col a{font-size:14.5px;color:var(--ink-soft);transition:color .2s;}
+  .foot-col a:hover{color:var(--ink);}
+  .foot-social{display:flex;gap:10px;margin-top:18px;}
+  .foot-social a{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;display:flex;align-items:center;justify-content:center;transition:border-color .2s,background .2s;}
+  .foot-social a:hover{border-color:var(--navy);background:var(--sky-soft);}
+  .foot-social svg{width:16px;height:16px;}
+  .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--ink-mute);}
+
+  /* ===== WA FLOAT (sama persis dengan index.html) ===== */
+  .wa-float{
+    position:fixed;bottom:20px;right:20px;z-index:60;
+    width:54px;height:54px;border-radius:50%;
+    background:var(--blue-vivid);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 24px -6px rgba(46,91,255,.5);
+    transition:transform .3s ease, opacity .3s ease;
+  }
+  .wa-float:hover{transform:scale(1.08);}
+  .wa-float.hide{transform:translateY(80px);opacity:0;pointer-events:none;}
+  .wa-float svg{width:25px;height:25px;color:#fff;}
+
+  @media (max-width:980px){
+    .article-grid{grid-template-columns:1fr 1fr;}
+    .nav-links{display:none;}
+    .nav-toggle{display:block;}
+    .nav-right .btn-primary{display:none;}
+    .nav-links-cta{
+      display:flex;width:100%;justify-content:center;font-size:16px;
+      padding:16px 24px;margin-top:20px;letter-spacing:.01em;
+    }
+  }
+  @media (max-width:640px){
+    .section{padding:64px 0;}
+    .article-grid{grid-template-columns:1fr;}
+    .nav{padding:12px 18px;}
+    .page-hero{padding:48px 0 40px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="nav">
+    <a href="/beranda" class="logo">
+      <img src="assets/logos/jasacvats.png" alt="CVATS.id">
+    </a>
+    <div class="nav-links">
+      <a href="/tentang-kami">Tentang Kami</a>
+      <a href="/detail-paket">Detail Paket</a>
+      <a href="/paket-harga">Harga</a>
+      <a href="/artikel" class="active">Artikel</a>
+      <a href="/faq">FAQ</a>
+      <a href="#" class="btn btn-primary btn-sm wa-cta nav-links-cta" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS.">Hubungi Kami</a>
+    </div>
+    <div class="nav-right">
+      <a href="#" class="btn btn-primary btn-sm wa-cta" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS.">Hubungi Kami</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Buka menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <section class="page-hero">
+    <div class="dots" style="top:30px;right:8%;width:100px;height:70px;"></div>
+    <div class="wrap">
+      <span class="hero-eyebrow">Blog CVATS.id</span>
+      <h1>Artikel &amp; Tips Karier</h1>
+      <p class="lede">Panduan seputar CV ATS, surat lamaran, LinkedIn, dan tips melamar kerja lainnya.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="article-grid" id="articleGrid">
+        <p class="state-msg" id="stateMsg">Memuat artikel...</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <a href="/beranda" class="logo">
+          <img src="assets/logos/jasacvats.png" alt="CVATS.id">
+        </a>
+        <p>Jasa pembuatan CV ATS, surat lamaran &amp; optimasi LinkedIn profesional — bikin kamu Ready to Work.</p>
+        <div class="foot-social">
+          <a href="https://instagram.com/jasacvatsid" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          </a>
+          <a href="#" class="wa-cta" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS." aria-label="WhatsApp">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <h4>Navigasi</h4>
+          <ul>
+           <li><a href="/beranda">Beranda</a></li>
+<li><a href="/tentang-kami">Tentang Kami</a></li>
+<li><a href="/detail-paket">Detail Paket</a></li>
+<li><a href="/paket-harga">Paket Harga</a></li>
+<li><a href="/artikel">Artikel</a></li>
+<li><a href="/faq">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="foot-col">
+          <h4>Kontak</h4>
+          <ul>
+            <li><a href="#" class="wa-cta" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS.">WhatsApp Admin</a></li>
+            <li><a href="https://instagram.com/jasacvatsid" target="_blank" rel="noopener">@jasacvatsid</a></li>
+            <li><a href="mailto:halo@cvats.id">halo@cvats.id</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 CVATS.id — Jasa Pembuatan CV ATS &amp; Optimasi LinkedIn Profesional</span>
+      <span>Indonesia</span>
+    </div>
+  </div>
+</footer>
+
+<a href="#" class="wa-float wa-cta" id="waFloat" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS." aria-label="Chat WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+</a>
+
+<script>
+  // ====== SUPABASE ======
+  const SUPABASE_URL = "https://vvpxvfltzcujxgglguou.supabase.co";
+  const SUPABASE_ANON_KEY = "sb_publishable_-pk7cQ4qdpXtCXT_ypqKzA_WKIkPEBd";
+  const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+  // ====== EDIT INI: nomor WhatsApp asli, format 62xxxxxxxxxx (tanpa spasi/plus) ======
+  const WA_NUMBER = "6281234567890";
+
+  document.querySelectorAll('.wa-cta').forEach(el=>{
+    const msg = el.getAttribute('data-msg') || 'Halo, saya mau tanya soal jasa CV ATS.';
+    el.setAttribute('href', `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`);
+    el.setAttribute('target', '_blank');
+    el.setAttribute('rel', 'noopener');
+  });
+
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', ()=>{
+    header.classList.toggle('scrolled', window.scrollY > 8);
+  }, {passive:true});
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.querySelector('.nav-links');
+  function openMobileNav(){
+    navLinks.classList.add('open');
+    navLinks.style.cssText = 'display:flex;position:absolute;top:100%;left:0;right:0;background:#fff;flex-direction:column;padding:20px 24px;border-bottom:1px solid var(--line);gap:18px;box-shadow:0 14px 30px -18px rgba(10,26,61,.18);';
+  }
+  function closeMobileNav(){
+    navLinks.classList.remove('open');
+    navLinks.style.cssText = '';
+  }
+  navToggle.addEventListener('click', ()=>{
+    if(navLinks.classList.contains('open')) closeMobileNav();
+    else openMobileNav();
+  });
+
+  const waFloat = document.getElementById('waFloat');
+  let lastScroll = 0;
+  window.addEventListener('scroll', ()=>{
+    const cur = window.scrollY;
+    if(cur > lastScroll && cur > 240){ waFloat.classList.add('hide'); }
+    else { waFloat.classList.remove('hide'); }
+    lastScroll = cur;
+  }, {passive:true});
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduceMotion){
+    document.body.classList.add('js-enhanced');
+  }
+
+  // ====== ARTIKEL ======
+  const grid = document.getElementById('articleGrid');
+  const stateMsg = document.getElementById('stateMsg');
+
+  function formatDate(iso){
+    const d = new Date(iso);
+    return d.toLocaleDateString('id-ID', { day:'numeric', month:'long', year:'numeric' });
+  }
+
+  function cardTemplate(a){
+    const cover = a.cover_image_url || 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?w=600&h=380&q=80&auto=format&fit=crop';
+    return `
+     <a class="article-card reveal in-view" href="/${encodeURIComponent(a.slug)}">
+        <img class="article-cover" src="${cover}" alt="${a.title}" loading="lazy">
+        <div class="article-body">
+          <span class="article-cat">${a.category || 'Tips Karier'}</span>
+          <h3 class="article-title">${a.title}</h3>
+          <p class="article-excerpt">${a.excerpt || ''}</p>
+          <div class="article-meta">
+            <span>${formatDate(a.created_at)}</span>
+            <span>${a.read_minutes || 4} menit baca</span>
+          </div>
+        </div>
+      </a>`;
+  }
+
+  async function loadArticles(){
+    const { data, error } = await supabaseClient
+      .from('articles')
+      .select('slug, title, excerpt, cover_image_url, category, read_minutes, created_at')
+      .eq('published', true)
+      .order('created_at', { ascending:false });
+
+    if(error){
+      stateMsg.textContent = 'Gagal memuat artikel. Coba lagi nanti.';
+      console.error(error);
+      return;
+    }
+    if(!data || data.length === 0){
+      stateMsg.textContent = 'Belum ada artikel yang dipublikasikan.';
+      return;
+    }
+    grid.innerHTML = data.map(cardTemplate).join('');
+  }
+
+  loadArticles();
+</script>
+
+</body>
+</html>

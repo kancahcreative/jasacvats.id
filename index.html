@@ -1,17 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<!--
-  SEBELUM PUBLISH — GANTI DATA DI BAWAH INI:
-  1. WA_NUMBER (di bagian <script>, paling bawah) -> nomor WhatsApp asli, format 62xxxxxxxxxx
-  2. Link Instagram di footer & nav (@jasacvatsid) -> pastikan itu akun aktif yang benar
-  3. Testimoni di section #testimoni -> ganti dengan testimoni ASLI dari klien
-  4. Kartu contoh LinkedIn di section #linkedin -> ganti dengan contoh profil ASLI (dengan izin klien terkait)
-  5. Logo brand di section #spesialis (Shopee, Unilever, dll) -> ganti dengan logo ASLI brand yang valid
-     (jangan pakai logo brand besar untuk klaim tanpa izin resmi)
-  6. Alamat & email di footer -> isi data asli
-  7. <link rel="canonical"> dan og:url -> isi dengan domain asli setelah live
--->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jasa CV ATS & Optimasi LinkedIn Profesional | Ready to Work — CVATS.id</title>
@@ -218,7 +207,7 @@
   .hero-cta{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap;}
   .hero .btn{padding:11px 20px;font-size:14.5px;}
 
-  /* Mobile-only "hired by" strip — hidden on desktop, replaces the photo below 980px */
+  /* Mobile-only */
   .hero-mobile-trust{display:none;}
   .hmt-label{display:block;font-size:12px;font-weight:700;color:#9FB0DC;letter-spacing:.03em;text-transform:uppercase;margin-bottom:10px;}
   .hmt-logos{display:flex;flex-wrap:wrap;gap:8px;}
@@ -527,7 +516,7 @@
   .process-item h3 svg{width:18px;height:18px;color:var(--blue-vivid);}
   .process-item p{font-size:14px;color:var(--ink-soft);line-height:1.55;}
 
-  /* ===== DETAIL PAKET (real mockups from PDF) ===== */
+  /* ===== DETAIL PAKET ===== */
 .detail-paket-section{background:#fff;}
 
   .detail-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-bottom:36px;position:relative;z-index:1;}
@@ -557,7 +546,7 @@
   .testi-head p{color:var(--ink-soft);font-size:17px;margin-top:14px;max-width:520px;margin-inline:auto;}
   .testi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px;padding-bottom:24px;}
 
-  /* Real testimoni screenshots (from PDF, embedded as-is) */
+  /* Real testimoni screenshots */
   .testi-shots{max-width:900px;margin:56px auto 0;}
   .testi-shots-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;}
   .testi-shot-figure{
@@ -639,7 +628,7 @@
   .foot-social svg{width:16px;height:16px;}
   .foot-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:13px;color:var(--ink-mute);}
 
-  /* ===== WA FLOAT (smaller + hide on scroll) ===== */
+  /* ===== WA FLOAT ===== */
   .wa-float{
     position:fixed;bottom:20px;right:20px;z-index:60;
     width:54px;height:54px;border-radius:50%;
@@ -1228,7 +1217,7 @@
     </div>
   </section>
 
-  <!-- DETAIL PAKET (contoh asli per paket, dari PDF) -->
+  <!-- DETAIL PAKET  -->
  <section class="section detail-paket-section">
     <div class="wrap">
       <div class="section-head center reveal" id="detail-paket" style="text-align:center;margin-inline:auto;">
@@ -1275,7 +1264,7 @@
     </div>
   </section>
 
-  <!-- LINKEDIN SHOWCASE (with real avatars) -->
+  <!-- LINKEDIN SHOWCASE -->
   <section class="section">
     <div class="wrap">
       <div class="section-head center reveal" id="linkedin" style="text-align:center;margin-inline:auto;">
@@ -1517,9 +1506,6 @@
 
   const header = document.getElementById('siteHeader');
 
-  // Keep a live CSS var with the actual rendered header height, so
-  // scroll-margin-top on section targets always matches the real
-  // sticky header — even if it changes across breakpoints or on load.
   function syncHeaderHeight(){
     document.documentElement.style.setProperty('--header-h', header.getBoundingClientRect().height + 'px');
   }
@@ -1547,12 +1533,6 @@
     else openMobileNav();
   });
 
-  // ===== Scroll-spy lock (fixes "must click twice" bug) =====
-  // While a click-triggered smooth scroll is animating, the section
-  // that visually passes underneath the header fires the
-  // IntersectionObserver and overwrites the just-set active/bold link.
-  // We lock the spy right when the user clicks, and only release it
-  // once the browser reports the scroll has actually finished.
   let scrollLock = false;
   let scrollLockTimer = null;
 
@@ -1569,27 +1549,12 @@
     clearTimeout(scrollLockTimer);
   }
 
-  // ===== Precise single-click smooth scroll =====
-  // Two behaviors depending on whether the target section fits inside
-  // the viewport below the sticky header:
-  //  - SHORT sections (fit entirely below the header, e.g. "Tentang
-  //    Kami"): center the section in that available space so there's
-  //    equal breathing room above and below — avoids the "empty gap on
-  //    top, cramped at bottom" look.
-  //  - TALL sections (don't fit, e.g. "Testimoni", "Paket Harga",
-  //    "FAQ"): can't be centered without cutting off content on both
-  //    ends, so top-align the heading with a small, fixed gap under
-  //    the header instead — maximizes how much of the section is
-  //    visible right after scrolling.
+
   function scrollToId(id, instant){
     const target = document.querySelector(id);
     if(!target) return;
     const behavior = instant ? 'auto' : 'smooth';
 
-    // Kalau target masih ber-class "reveal" dan belum pernah terlihat,
-    // posisinya masih tergeser translateY(20px) sampai IntersectionObserver
-    // mendeteksinya SETELAH discroll — bikin klik pertama mendarat kemepetan.
-    // Tambahkan "in-view" duluan supaya posisi yang diukur sudah final.
     if (target.classList.contains('reveal') && !target.classList.contains('in-view')) {
   target.style.transition = 'none';   // matikan animasi sesaat
   target.classList.add('in-view');
@@ -1601,9 +1566,7 @@
     const availableH = window.innerHeight - headerH;
     const smallGap = 20;
 
-    // Section dengan tab interaktif (kontennya berubah-ubah tinggi
-    // tergantung tab yang aktif) selalu di-top-align, jangan di-center,
-    // supaya konsisten dengan Harga/Testimoni/FAQ.
+
     const forceTopAlign = ['#detail-paket'];
     if (forceTopAlign.includes(id)) {
       const targetRect = target.getBoundingClientRect();
@@ -1613,14 +1576,6 @@
       return;
     }
 
-    // Use the closest .wrap (the real content container, without the
-    // enclosing <section>'s own top/bottom padding) to judge how tall
-    // the full visual block actually is. Using the <section> itself
-    // was overcounting ~176px of its padding as "content", which made
-    // short blocks like "Tentang Kami" look too tall to fit and fall
-    // into the top-align branch instead of being centered. Falls back
-    // to the enclosing <section> for cases where the id sits directly
-    // on a <section> (e.g. the hero).
     const block = target.closest('.wrap') || target.closest('section') || target;
     const blockRect = block.getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
@@ -1641,7 +1596,7 @@
 
   document.querySelectorAll('a[href^="#"]').forEach(link=>{
     const href = link.getAttribute('href');
-    if(!href || href.length < 2) return; // skip bare "#" (e.g. WA buttons before JS rewrite)
+    if(!href || href.length < 2) return; 
     link.addEventListener('click', (e)=>{
       const target = document.querySelector(href);
       if(!target) return;
@@ -1676,14 +1631,6 @@
     });
   }
 
-  // ===== Handle cross-page navigation with a URL hash =====
-  // Kalau user datang dari halaman lain (misal /artikel) lewat link
-  // "index.html#tentang-kami", browser cuma jalanin native anchor jump
-  // (yang gak selalu presisi krn header sticky) dan JS di sini gak pernah
-  // sempat nge-set status "aktif/bold" di navbar krn itu event klik yang
-  // beda halaman. Ini nunggu semuanya selesai load, lalu reposisikan
-  // scroll secara presisi (pakai fungsi yang sama kayak klik biasa) dan
-  // set status aktifnya secara manual.
   function handleInitialHash(){
     const hash = window.location.hash;
     if(!hash || hash.length < 2) return;

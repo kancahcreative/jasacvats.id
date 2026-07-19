@@ -1980,9 +1980,9 @@ function handleInitialPath(){
   if(!hash) return;
   const target = document.querySelector(hash);
   if(!target) return;
-  requestAnimationFrame(()=>{
+ requestAnimationFrame(()=>{
     lockScrollSpy();
-    scrollToId(hash, true);
+    scrollToId(hash, true, true); // skip pushState — URL udah bener dari refresh
     setActiveNavLink(hash);
   });
 }

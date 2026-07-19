@@ -1,11 +1,13 @@
 {
   "name": "jasacvats",
   "compatibility_date": "2026-07-19",
+  "main": "src/index.js",
   "observability": { "enabled": true },
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
     "html_handling": "none",
-    "not_found_handling": "single-page-application"
+    "not_found_handling": "none"
   },
   "compatibility_flags": ["nodejs_compat"]
 }

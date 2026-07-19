@@ -1139,15 +1139,15 @@
 
 <header id="siteHeader">
   <nav class="nav">
-    <a href="#beranda" class="logo">
+    <a href="/beranda" class="logo">
       <img src="assets/logos/jasacvats.png" alt="CVATS.id">
     </a>
     <div class="nav-links">
-      <a href="#tentang-kami">Tentang Kami</a>
-      <a href="#detail-paket">Detail Paket</a>
-      <a href="#paket-harga">Harga</a>
+      <a href="/tentang-kami">Tentang Kami</a>
+      <a href="/detail-paket">Detail Paket</a>
+      <a href="/paket-harga">Harga</a>
       <a href="/artikel">Artikel</a>
-      <a href="#faq">FAQ</a>
+      <a href="/faq">FAQ</a>
       <a href="#" class="btn btn-primary btn-sm wa-cta nav-links-cta" data-msg="Halo, saya mau tanya-tanya soal jasa pembuatan CV ATS.">Hubungi Kami</a>
     </div>
     <div class="nav-right">
@@ -1176,7 +1176,7 @@
           <p class="lede">CV yang dirancang untuk menembus algoritma screening perusahaan. Lebih dari <strong>10,000+ kandidat</strong> sudah lolos ke tahap interview. Hasil dalam 24 jam, siap pakai dalam Word &amp; PDF.</p>
           <div class="hero-cta">
             <a href="#" class="btn btn-primary wa-cta" data-msg="Halo, saya tertarik dengan CV ATS. Berapa biayanya?">Buat CV ATS Sekarang</a>
-            <a href="#paket-harga" class="btn btn-outline-light">Lihat Paket</a>
+            <a href="/paket-harga" class="btn btn-outline-light">Lihat Paket</a>
           </div>
           <div class="hero-mobile-trust">
             <span class="hmt-label">Kandidat kami diterima kerja di</span>
@@ -1901,7 +1901,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-brand">
-        <a href="#beranda" class="logo">
+        <a href="/beranda" class="logo">
           <img src="assets/logos/jasacvats.png" alt="CVATS.id">
         </a>
         <p>Jasa pembuatan CV ATS, surat lamaran &amp; optimasi LinkedIn profesional</p>
@@ -1918,12 +1918,12 @@
         <div class="foot-col">
           <h4>Navigasi</h4>
           <ul>
-            <li><a href="#beranda">Beranda</a></li>
-            <li><a href="#tentang-kami">Tentang Kami</a></li>
-            <li><a href="#detail-paket">Detail Paket</a></li>
-            <li><a href="#paket-harga">Paket Harga</a></li>
+            <li><a href="/beranda">Beranda</a></li>
+            <li><a href="/tentang-kami">Tentang Kami</a></li>
+            <li><a href="/detail-paket">Detail Paket</a></li>
+            <li><a href="/paket-harga">Paket Harga</a></li>
             <li><a href="/artikel">Artikel</a></li>
-            <li><a href="#faq">FAQ</a></li>
+            <li><a href="/faq">FAQ</a></li>
           </ul>
         </div>
         <div class="foot-col">
@@ -1948,6 +1948,45 @@
 </a>
 
 <script>
+  const SECTION_MAP = {
+  '/beranda': '#beranda',
+  '/tentang-kami': '#tentang-kami',
+  '/detail-paket': '#detail-paket',
+  '/paket-harga': '#paket-harga',
+  '/faq': '#faq'
+};
+
+// klik link section (clean path)
+document.querySelectorAll('a[href^="/"]').forEach(link=>{
+  const path = link.getAttribute('href');
+  if(!SECTION_MAP[path]) return;
+  const hash = SECTION_MAP[path];
+  link.addEventListener('click', (e)=>{
+    const target = document.querySelector(hash);
+    if(!target) return;
+    e.preventDefault();
+    if(navLinks.classList.contains('open')) closeMobileNav();
+    lockScrollSpy();
+    scrollToId(hash);
+    setActiveNavLink(hash);
+    history.pushState(null, '', path); // biar address bar tetap /detail-paket
+  });
+});
+
+// load pertama kali (misal orang buka langsung /detail-paket)
+function handleInitialPath(){
+  const path = window.location.pathname;
+  const hash = SECTION_MAP[path];
+  if(!hash) return;
+  const target = document.querySelector(hash);
+  if(!target) return;
+  requestAnimationFrame(()=>{
+    lockScrollSpy();
+    scrollToId(hash, true);
+    setActiveNavLink(hash);
+  });
+}
+window.addEventListener('load', handleInitialPath);
   const WA_NUMBER = "6281234567890";
 
   document.querySelectorAll('.wa-cta').forEach(el=>{

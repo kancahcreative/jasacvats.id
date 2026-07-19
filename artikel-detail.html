@@ -170,12 +170,16 @@
 
   /* Tag pills setelah konten */
   .article-tags{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 8px;}
-  .article-tags span{background:var(--sky-soft);color:var(--navy);font-size:12.5px;font-weight:700;padding:6px 13px;border-radius:100px;}
+  .article-tags a{
+    background:var(--sky-soft);color:var(--navy);font-size:12.5px;font-weight:700;
+    padding:6px 13px;border-radius:100px;transition:background .2s,color .2s;
+  }
+  .article-tags a:hover{background:var(--blue-vivid);color:#fff;}
 
   /* ===== CTA BOX (varian dari .spotlight index.html) ===== */
   .cta-box{
     background:linear-gradient(150deg, var(--navy-deep) 0%, var(--navy) 100%);
-    color:#fff;border-radius:var(--radius-xl);padding:36px 32px;text-align:center;margin-top:28px;
+    color:#fff;border-radius:var(--radius-xl);padding:36px 32px;text-align:center;margin-top:44px;
     position:relative;overflow:hidden;
   }
   .cta-box h3{color:#fff;font-size:22px;margin-bottom:10px;}
@@ -509,7 +513,11 @@
       .map(t => t.trim())
       .filter(Boolean);
     const tagsHtml = tags.length
-      ? `<div class="article-tags">${tags.map(t => `<span>${esc(t.startsWith('#') ? t : '#' + t)}</span>`).join('')}</div>`
+      ? `<div class="article-tags">${tags.map(t => {
+          const label = t.startsWith('#') ? t : '#' + t;
+          const query = t.replace(/^#/, '');
+          return `<a href="/artikel?tag=${encodeURIComponent(query)}">${esc(label)}</a>`;
+        }).join('')}</div>`
       : '';
 
     mainContent.innerHTML = `
@@ -541,17 +549,18 @@
             <section class="article-content">
               ${bodyHtml}
               ${tagsHtml}
-              <div class="cta-box">
-                <h3>Siap bikin CV ATS kamu sendiri?</h3>
-                <p>Proses cepat 1x24 jam, format Word &amp; PDF, harga mulai Rp30.000.</p>
-                <a href="/#paket-harga" class="btn btn-primary">Lihat Paket Harga</a>
-              </div>
             </section>
 
             <section class="related-section" id="relatedSection" style="display:none;">
               <h2>Artikel Terkait</h2>
               <div class="article-list" id="relatedList"></div>
             </section>
+
+            <div class="cta-box">
+              <h3>Siap bikin CV ATS kamu sendiri?</h3>
+              <p>Proses cepat 1x24 jam, format Word &amp; PDF, harga mulai Rp30.000.</p>
+              <a href="/#paket-harga" class="btn btn-primary">Lihat Paket Harga</a>
+            </div>
           </div>
 
           <aside class="featured-sidebar" id="featuredSidebar" style="display:none;">

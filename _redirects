@@ -1,4 +1,5 @@
-/admin.html             /admin.html             200
+/                       /index.html              200
+/admin.html             /admin.html              200
 /artikel.html           /artikel.html            200
 /artikel-detail.html    /artikel-detail.html     200
 /assets/*               /assets/:splat           200

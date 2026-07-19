@@ -504,6 +504,14 @@
     const bodyHtml = window.marked.parse(a.content || '');
     const category = a.category || 'Tips Karier';
 
+    const tags = (a.meta_keywords || '')
+      .split(',')
+      .map(t => t.trim())
+      .filter(Boolean);
+    const tagsHtml = tags.length
+      ? `<div class="article-tags">${tags.map(t => `<span>${esc(t.startsWith('#') ? t : '#' + t)}</span>`).join('')}</div>`
+      : '';
+
     mainContent.innerHTML = `
       <div class="wrap">
         <nav class="breadcrumb">
@@ -532,6 +540,7 @@
 
             <section class="article-content">
               ${bodyHtml}
+              ${tagsHtml}
               <div class="cta-box">
                 <h3>Siap bikin CV ATS kamu sendiri?</h3>
                 <p>Proses cepat 1x24 jam, format Word &amp; PDF, harga mulai Rp30.000.</p>

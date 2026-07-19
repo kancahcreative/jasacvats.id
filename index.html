@@ -2094,13 +2094,19 @@ window.addEventListener('load', handleInitialPath);
     });
   });
 
-  const navAnchorLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
-  function setActiveNavLink(href){
-    navAnchorLinks.forEach(a=>{
-      a.classList.toggle('active', a.getAttribute('href') === href);
-    });
-  }
-  const navSectionIds = navAnchorLinks.map(a=>a.getAttribute('href')).filter(h=>document.querySelector(h));
+const navAnchorLinks = Array.from(document.querySelectorAll('.nav-links a[href^="/"]'))
+  .filter(a => SECTION_MAP[a.getAttribute('href')]);
+
+function setActiveNavLink(hash){
+  navAnchorLinks.forEach(a=>{
+    const mappedHash = SECTION_MAP[a.getAttribute('href')];
+    a.classList.toggle('active', mappedHash === hash);
+  });
+}
+
+const navSectionIds = navAnchorLinks
+  .map(a => SECTION_MAP[a.getAttribute('href')])
+  .filter(h => h && document.querySelector(h));
   if(navSectionIds.length){
     const navSpy = new IntersectionObserver((entries)=>{
       if(scrollLock) return;

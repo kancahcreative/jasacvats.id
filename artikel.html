@@ -214,6 +214,19 @@
 
   .state-msg{text-align:center;color:var(--ink-soft);font-size:15px;padding:60px 0;}
 
+  /* ===== TAG FILTER BAR ===== */
+  .tag-filter-bar{
+    display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    background:var(--sky-soft);border:1px solid var(--blue-pale);border-radius:var(--radius-md);
+    padding:14px 20px;margin-bottom:28px;font-size:14px;color:var(--ink-soft);
+  }
+  .tag-filter-bar strong{color:var(--navy);}
+  .tag-filter-clear{
+    font-weight:700;font-size:13px;color:var(--blue-vivid);white-space:nowrap;
+    transition:color .2s;
+  }
+  .tag-filter-clear:hover{color:var(--blue-vivid-dark);}
+
   /* ===== FOOTER (sama persis dengan index.html) ===== */
   footer{padding:64px 0 32px;}
   .foot-top{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;margin-bottom:36px;}
@@ -302,6 +315,13 @@
 
   <section class="section">
     <div class="wrap">
+
+      <!-- Muncul otomatis kalau halaman diakses lewat klik tag, misal /artikel?tag=cv-ats -->
+      <div class="tag-filter-bar" id="tagFilterBar" style="display:none;">
+        <span>Menampilkan artikel dengan tag <strong id="tagFilterLabel"></strong></span>
+        <a href="/artikel" class="tag-filter-clear">Lihat Semua Artikel ✕</a>
+      </div>
+
       <div class="articles-layout">
 
         <!-- KIRI: daftar artikel terbaru -->
@@ -470,12 +490,33 @@
       </a>`;
   }
 
+  const tagFilterBar = document.getElementById('tagFilterBar');
+  const tagFilterLabel = document.getElementById('tagFilterLabel');
+
+  function getTagFromUrl(){
+    const params = new URLSearchParams(window.location.search);
+    const tag = params.get('tag');
+    return tag ? tag.trim() : null;
+  }
+
   async function loadArticles(){
-    const { data, error } = await supabaseClient
+    const tag = getTagFromUrl();
+
+    let query = supabaseClient
       .from('articles')
-      .select('slug, title, excerpt, cover_image_url, category, read_minutes, created_at')
+      .select('slug, title, excerpt, cover_image_url, category, read_minutes, created_at, meta_keywords')
       .eq('published', true)
       .order('created_at', { ascending:false });
+
+    // Kalau halaman diakses lewat klik tag (mis. /artikel?tag=cv-ats),
+    // filter artikel yang kolom "Kata Kunci Fokus"-nya mengandung tag tsb.
+    if(tag){
+      query = query.ilike('meta_keywords', `%${tag}%`);
+      tagFilterLabel.textContent = `#${tag}`;
+      tagFilterBar.style.display = 'flex';
+    }
+
+    const { data, error } = await query;
 
     if(error){
       stateMsg.textContent = 'Gagal memuat artikel. Coba lagi nanti.';
@@ -483,19 +524,32 @@
       return;
     }
     if(!data || data.length === 0){
-      stateMsg.textContent = 'Belum ada artikel yang dipublikasikan.';
+      stateMsg.textContent = tag
+        ? `Belum ada artikel dengan tag "#${tag}".`
+        : 'Belum ada artikel yang dipublikasikan.';
       return;
     }
 
-    // Kolom kiri: semua artikel, terbaru dulu
+    // Kolom kiri: semua artikel (atau hasil filter tag), terbaru dulu
     articleList.innerHTML = data.map(articleItemTemplate).join('');
 
-    // Kolom kanan: featured post (artikel terbaru sebagai sorotan)
-    const featured = data.slice(0, FEATURED_COUNT);
-    if(featured.length){
-      featuredList.innerHTML = featured.map(featuredItemTemplate).join('');
-      featuredSidebar.style.display = 'block';
-    }
+    // Kolom kanan: featured post — selalu tampilkan artikel terbaru
+    // secara umum, terlepas dari filter tag yang sedang aktif.
+    loadFeatured();
+  }
+
+  async function loadFeatured(){
+    const { data, error } = await supabaseClient
+      .from('articles')
+      .select('slug, title, cover_image_url, created_at')
+      .eq('published', true)
+      .order('created_at', { ascending:false })
+      .limit(FEATURED_COUNT);
+
+    if(error || !data || data.length === 0) return;
+
+    featuredList.innerHTML = data.map(featuredItemTemplate).join('');
+    featuredSidebar.style.display = 'block';
   }
 
   loadArticles();

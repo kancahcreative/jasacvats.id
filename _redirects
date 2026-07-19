@@ -1,8 +1,7 @@
-/beranda         /index.html           200
-/tentang-kami    /index.html           200
-/detail-paket    /index.html           200
-/paket-harga     /index.html           200
-/faq             /index.html           200
-/artikel         /artikel.html         200
-
-/*               /artikel-detail.html  200
+/beranda        /index.html      200
+/tentang-kami   /index.html      200
+/detail-paket   /index.html      200
+/paket-harga    /index.html      200
+/faq            /index.html      200
+/artikel        /artikel.html      200
+/:slug          /artikel-detail.html  200

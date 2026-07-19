@@ -1955,6 +1955,14 @@
   '/paket-harga': '#paket-harga',
   '/faq': '#faq'
 };
+  // Bersihkan sisa hash lama di URL (misal /tentang-kami#tentang-kami dari sebelum fix)
+(function cleanupStaleHash(){
+  const path = window.location.pathname;
+  const expectedHash = SECTION_MAP[path];
+  if(expectedHash && window.location.hash === expectedHash){
+    history.replaceState(null, '', path);
+  }
+})();
 
 // klik link section (clean path)
 document.querySelectorAll('a[href^="/"]').forEach(link=>{

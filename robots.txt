@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin
 
-Sitemap: https://cvats.id/sitemap.xml
+Sitemap: https://jasacvats.id/sitemap.xml

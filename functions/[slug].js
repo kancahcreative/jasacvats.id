@@ -5,7 +5,7 @@ export async function onRequest(context) {
 
   // Route yang sudah ditangani _redirects atau file statis -> biarkan lewat normal
   const knownRoutes = new Set([
-    '/', '/beranda', '/tentang-kami', '/detail-paket', '/paket-harga', '/faq', '/artikel'
+    '/', '/beranda', '/tentang-kami', '/detail-paket', '/paket-harga', '/faq', '/artikel', '/admin'
   ]);
 
   if (knownRoutes.has(pathname) || /\.[a-zA-Z0-9]+$/.test(pathname)) {
